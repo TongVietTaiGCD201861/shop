@@ -169,12 +169,12 @@
 
 .image_one {
   width: 90%;
-  height: 32vh;
+  height: 45vh;
   margin-left: 8%;
 }
 
 .image_two {
-  height: 32vh;
+  height: 45vh;
   width: 85%;
 }
 
@@ -194,7 +194,7 @@
 }
 
 .image-product {
-  width: calc(16%);
+  flex-basis: calc(20% - 20px);
   margin-bottom: 20px;
   margin-right: 10px;
   padding: 0 0.5%;
@@ -215,14 +215,15 @@
 }
 
 .product-image {
-  width: 100%;
+  width: 90%;
   height: 30vh;
-  border-radius: 10px;
-  padding: 0.5% 0%;
+  border-radius: 30px;
+  padding: 3.5% 0%;
+  margin-left: 5%;
 }
 
 .price {
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
 .product-link {
@@ -447,7 +448,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 300px;
+  margin-top: 15px;
 }
 
 .color-picker {

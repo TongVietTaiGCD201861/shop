@@ -150,14 +150,14 @@ const ProductDetail = () => {
                         <img
                             key={index}
                             className="product-detail-view-total"
-                            src={"http://localhost:5000/api/images/" + item?.imgPath}
+                            src={Shirt.BASEURLIMAGE + item?.imgPath}
                             alt={`Image ${index + 1}`}
                             onClick={() => handleImageClick(item?.imgPath)}
                         />
                     ))}
                 </div>
                 <div style={{ width: "45%" }}>
-                    <img className="product-detail-image" src={"http://localhost:5000/api/images/" + selectedImagePath} alt="Shirt Store Logo" />
+                    <img className="product-detail-image" src={Shirt.BASEURLIMAGE + selectedImagePath} alt="Shirt Store Logo" />
                 </div>
                 <div style={{ width: "45%" }}>
                     <div className="title-image">{data?.item1?.name.toLowerCase()}</div>
