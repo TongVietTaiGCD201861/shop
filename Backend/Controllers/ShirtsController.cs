@@ -33,14 +33,12 @@ namespace BackEnd.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Authorize(Role.User)]
         public async Task<IList<Tuple<Shirt, IList<Image>>>> GetAll()
         {
             return _shirtService.GetAllShirtsAndImages();
         }
 
         [HttpGet("{id:int}")]
-        [Authorize(Role.User)]
         public async Task<Tuple<Shirt, IList<Image>>> GetByIdS([FromRoute] int id)
         {
            
