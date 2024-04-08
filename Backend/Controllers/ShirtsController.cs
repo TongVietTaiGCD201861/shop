@@ -39,6 +39,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<Tuple<Shirt, IList<Image>>> GetByIdS([FromRoute] int id)
         {
            
