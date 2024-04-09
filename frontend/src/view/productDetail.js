@@ -156,10 +156,10 @@ const ProductDetail = () => {
                         />
                     ))}
                 </div>
-                <div style={{ width: "45%" }}>
+                <div style={{ width: "35%" }}>
                     <img className="product-detail-image" src={Shirt.BASEURLIMAGE + selectedImagePath} alt="Shirt Store Logo" />
                 </div>
-                <div style={{ width: "45%" }}>
+                <div style={{ width: "55%" }}>
                     <div className="title-image">{data?.item1?.name.toLowerCase()}</div>
 
                     <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', paddingTop: '1%' }}>
