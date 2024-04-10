@@ -11,6 +11,7 @@ import { ForgotPassword } from "../components/forgotPassword.component";
 import ProductDetail from "../view/productDetail";
 import Home from "../view/home";
 import Cart from "../view/cart";
+import Purchase from "../view/purchase";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: "forgot-password", element: <ForgotPassword /> },
       { path: "product", element: <Home /> },
       { path: "product/cart", element: <Cart /> },
+      { path: "product/purchase", element: <Purchase /> },
       { path: "product/:id", element: <ProductDetail /> },
       {
         element: <RequireAuth />,

@@ -110,6 +110,24 @@ const ProductDetail = () => {
         navigate(`/product/cart`);
     };
 
+    const handlePurchase = () => {
+        if (!selectedColor) {
+            alert('Please select color before adding to cart.');
+            return;
+        }
+        const newItem = {
+            id: id,
+            name: data?.item1?.name,
+            color: selectedColor,
+            price: data?.item1?.price,
+            size: selectedSize,
+            quantity: quantity,
+            total: quantity * data?.item1?.price
+        };
+        
+        navigate('/product/purchase', { state: { newItem } });
+    };
+
     return (
         <>
             <div className="header_1">
@@ -263,7 +281,7 @@ const ProductDetail = () => {
                     </div>
 
                     <div style={{ paddingTop: '4%', display: 'flex', paddingBottom: '5%' }}>
-                        <div style={{ width: '50%', padding: ' 0 2.5%' }}>
+                        <div style={{ width: '50%', padding: ' 0 2.5%' }}  onClick={handlePurchase}>
                             <button className='btn-signup'><FontAwesomeIcon icon={faShoppingBasket} /> Purchase</button>
                         </div>
                         <div style={{ width: '45%', padding: '0% 0 0 6.5%' }} onClick={handleAddToCart}>

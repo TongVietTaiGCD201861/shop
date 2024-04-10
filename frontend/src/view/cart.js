@@ -66,8 +66,14 @@ export default function Cart() {
 
 
     const openConfirmation = (productId) => {
-        dispatch(deleteCart(productId))
+        const confirmed = window.confirm("Are you sure you want to remove this product from your cart?");
+        if (confirmed) {
+            dispatch(deleteCart(productId));
+        } else {
+            
+        }
     };
+    
 
     const handleSearch = () => {
         console.log(keySearch.length);

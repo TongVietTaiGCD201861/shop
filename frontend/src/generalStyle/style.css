@@ -659,3 +659,153 @@
 .footer-content button:hover {
   background-color: #c73316;
 }
+
+.purchase-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.receiver-info {
+}
+
+.form-row {
+  display: flex;
+}
+
+.form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}
+
+.receiver-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.receiver-info label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.receiver-info input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.receiver-info button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.receiver-info button:hover {
+  background-color: #0056b3;
+}
+
+.select-box {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.select-box option {
+  background-color: #fff;
+  color: #000;
+}
+
+.select-box:focus {
+  outline: none;
+  border-color: #007bff; 
+}
+
+.order-info {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.order-info h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 0;
+}
+
+.product-name {
+  flex: 2;
+}
+
+.product-price, .product-quantity, .product-total {
+  flex: 1;
+  text-align: center;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px;
+  font-size: 16px; 
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049; 
+}
+
+button[type="submit"]:active {
+  background-color: #3e8e41; 
+}
+
+.success-message {
+  background-color: #4CAF50; /* Màu nền */
+  color: white; /* Màu chữ */
+  padding: 10px 20px; /* Kích thước đệm */
+  margin-bottom: 10px; /* Khoảng cách dưới */
+  border-radius: 5px; /* Bo góc */
+}
+
+.back-to-products-button {
+  background-color: #008CBA; /* Màu nền */
+  color: white; /* Màu chữ */
+  padding: 10px 20px; /* Kích thước đệm */
+  text-decoration: none; /* Không gạch chân */
+  border: none; /* Không có đường viền */
+  border-radius: 5px; /* Bo góc */
+  cursor: pointer; /* Con trỏ khi rê chuột */
+}
+
+.back-to-products-button:hover {
+  background-color: #005f7d; /* Màu nền khi rê chuột */
+}
+
+
