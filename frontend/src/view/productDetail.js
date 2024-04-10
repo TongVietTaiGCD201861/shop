@@ -179,7 +179,7 @@ const ProductDetail = () => {
                         <b>Price:</b> <div className='product-price'>${data?.item1?.price}</div>
                     </div>
 
-                    <div style={{ paddingBottom: '4%', display: 'flex' }}>
+                    <div style={{ paddingBottom: '2%', display: 'flex' }}>
                         <div style={{ fontSize: '18px', width: '20%' }}>
                             <b>Return policy</b>
                         </div>
@@ -190,7 +190,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
 
-                    <div style={{ paddingBottom: '4%', display: 'flex' }}>
+                    <div style={{ paddingBottom: '2%', display: 'flex' }}>
                         <div style={{ fontSize: '18px', width: '20%' }}>
                             <b>Transport:</b>
                         </div>
@@ -214,7 +214,7 @@ const ProductDetail = () => {
                         </div>
                     </div>
 
-                    <div style={{ paddingTop: '4%' }}>
+                    <div style={{ paddingTop: '2%' }}>
                         <div style={{ width: '50%', display: 'flex' }} >
                             <div style={{ fontSize: '16px', width: '50%' }}>
                                 <b>Size

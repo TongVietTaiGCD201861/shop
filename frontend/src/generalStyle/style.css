@@ -102,7 +102,7 @@
 
 .image_home {
   width: 100%;
-  height: 90vh;
+  height: 65vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,12 +169,12 @@
 
 .image_one {
   width: 90%;
-  height: 45vh;
+  height: 35vh;
   margin-left: 8%;
 }
 
 .image_two {
-  height: 45vh;
+  height: 35vh;
   width: 85%;
 }
 
@@ -186,11 +186,11 @@
 }
 
 .image-product-container {
-  width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  margin-left: 7%;
+  width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-left: 5%;
 }
 
 .image-product {
@@ -425,8 +425,9 @@
 }
 
 .product-detail-view-total {
-  width: 90%;
+  width: 55%;
   padding-bottom: 1%;
+  margin-left: 22.5%;
 }
 
 .instruction {
