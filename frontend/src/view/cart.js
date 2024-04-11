@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCart, productCheck, productCheckFilter, searchCart, searchCartStart } from '../store/actions/cart';
+import {  useNavigate } from 'react-router-dom';
 
 export default function Cart() {
     const [isLoading, setIsLoading] = useState(true);
@@ -15,6 +16,8 @@ export default function Cart() {
     const [checkedCount, setCheckedCount] = useState(0);
     const [checkedTotal, setCheckedTotal] = useState(0);
     const dispatch = useDispatch()
+    const [newItem, setNewItem] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTimeout(() => {
@@ -34,7 +37,12 @@ export default function Cart() {
     const handleCheckboxChange = (e) => {
         const newValue = e.target.value;
         const isChecked = e.target.checked;
+
         if (isChecked) {
+            const selectedItem = search ? productSearch.find(product => product.cartId === newValue) : products.find(product => product.cartId === newValue);
+            if (!newItem.some(item => item.cartId === selectedItem.cartId)) {
+                setNewItem(prevItems => [...prevItems, selectedItem]);
+            }
             setListChecked(prevListChecked => {
                 const updatedList = [...prevListChecked, newValue];
                 dispatch(productCheck(updatedList));
@@ -43,6 +51,7 @@ export default function Cart() {
                 return updatedList;
             });
         } else {
+            setNewItem(prevItems => prevItems.filter(item => item.cartId !== newValue));
             setListChecked(prevListChecked => {
                 const updatedList = prevListChecked.filter(item => item !== newValue);
                 dispatch(productCheck(updatedList));
@@ -52,6 +61,18 @@ export default function Cart() {
             });
         }
     };
+
+    const handlePurchase = () => {
+        if (!listChecked) {
+            alert('Please select item before purchase.');
+            return;
+        }
+        navigate('/product/purchase', { state: { newItem } });
+    };
+
+
+    console.log(newItem);
+
 
     const updateCheckedTotal = (checkedItems) => {
         let total = 0;
@@ -70,10 +91,9 @@ export default function Cart() {
         if (confirmed) {
             dispatch(deleteCart(productId));
         } else {
-            
+
         }
     };
-    
 
     const handleSearch = () => {
         console.log(keySearch.length);
@@ -168,7 +188,7 @@ export default function Cart() {
                     <div style={{ paddingRight: '5%' }}>
                         Total money payable: ${checkedTotal}
                     </div>
-                    <button>Purchase</button>
+                    <button onClick={handlePurchase} >Purchase</button>
                 </div>
             </div>
 

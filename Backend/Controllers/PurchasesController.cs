@@ -23,50 +23,20 @@ namespace BackEnd.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("create")]
-        public IActionResult Create(PurchaseDto input)
-        {
-            if (input == null)
+            [HttpPost]
+            public IActionResult Create(PurchaseDto input)
             {
-                return BadRequest("PurchaseDto input is null");
-            }
+                if (input == null)
+                {
+                    return BadRequest("PurchaseDto input is null");
+                }
                 
-            var purchase = new Purchase
-            {
-                Name = input.Name,
-                Size = input.Size,
-                Price = input.Price,
-                Quantity = input.Quantity,
-                Total = input.Total,
-                UserName = input.UserName,
-                Address = input.Address,
-                PhoneNumber = input.PhoneNumber,
-                PaymentMethod = input.PaymentMethod,
-                AccountBuy = input.AccountBuy,
-            };
-
-            _purchaseService.Create(purchase);
-
-            return Ok(purchase);
-        }
-
-        
-        [HttpPost]
-        public IActionResult Create(List<PurchaseDto> inputs)
-        {
-            if (inputs == null || !inputs.Any())
-            {
-                return BadRequest("No purchases provided");
-            }
-
-            var purchases = new List<Purchase>();
-            foreach (var input in inputs)
-            {
                 var purchase = new Purchase
                 {
                     Name = input.Name,
                     Size = input.Size,
                     Price = input.Price,
+                    Color = input.Color,
                     Quantity = input.Quantity,
                     Total = input.Total,
                     UserName = input.UserName,
@@ -74,16 +44,15 @@ namespace BackEnd.Controllers
                     PhoneNumber = input.PhoneNumber,
                     PaymentMethod = input.PaymentMethod,
                     AccountBuy = input.AccountBuy,
+                    Status = 1,
                 };
-                purchases.Add(purchase);
+
+
+            _purchaseService.Create(purchase);
+
+                return Ok(purchase);
             }
 
-            _purchaseService.CreatePurchase(purchases);
-
-            return Ok(purchases);
-        }
-
-
-
+      
     }
 }

@@ -6,68 +6,90 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function Purchase() {
 
-        const location = useLocation();
-        const navigate = useNavigate();
-        const { newItem } = location.state;
-        const [userName, setUserName] = useState('');
-        const [paymentMethod, setPaymentMethod] = useState('');
-        const [phoneNumber, setPhoneNumber] = useState('');
-        const [isLoading, setIsLoading] = useState(false);
-        const [successMessage, setSuccessMessage] = useState('');
-        const [address, setAddress] = useState({
-            street: '',
-            city: '',
-            province: '',
-            country: ''
-        });
-        const { token } = useSelector(state => state.user);
-        const AccountBuy = useSelector(state => state.user.email);
-        console.log(AccountBuy);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { newItem } = location.state;
+    const [userName, setUserName] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [address, setAddress] = useState({
+        street: '',
+        city: '',
+        province: '',
+        country: ''
+    });
+    const { token } = useSelector(state => state.user);
+    const AccountBuy = useSelector(state => state.user.email);
+    console.log(AccountBuy);
 
-        const handleUserNameChange = (e) => {
-            setUserName(e.target.value);
-        };
+    const handleUserNameChange = (e) => {
+        setUserName(e.target.value);
+    };
 
-        const handlePhoneNumberChange = (e) => {
-            setPhoneNumber(e.target.value);
-        };
+    const handlePhoneNumberChange = (e) => {
+        setPhoneNumber(e.target.value);
+    };
 
-        const handlePaymentMethod = (e) => {
-            setPaymentMethod(e.target.value);
-        };
+    const handlePaymentMethod = (e) => {
+        setPaymentMethod(e.target.value);
+    };
 
-        const handleAddressChange = (e) => {
-            setAddress({ ...address, [e.target.name]: e.target.value });
-        };
+    const handleAddressChange = (e) => {
+        setAddress({ ...address, [e.target.name]: e.target.value });
+    };
 
-        const fetchData = async (order) => {
-            try {
-                const response = await PurchaseProduct.post(order, token);
-                setSuccessMessage('Successful purchase!');
-                navigate(`/product`);
-            } catch (error) {
-            }
-        };
+    const fetchData = async (order) => {
+        try {
+            const response = await PurchaseProduct.post(order, token);
+            setSuccessMessage('Successful purchase!');
+            navigate(`/product`);
+        } catch (error) {
+        }
+    };
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const order = {
-                name: newItem.name,
-                size: newItem.size,
-                price: newItem.price,
-                quantity: newItem.quantity,
-                total: newItem.total,
-                userName: userName,
-                address: `${address.street} - ${address.city} - ${address.province} - ${address.country}`,
-                phoneNumber: phoneNumber,
-                paymentMethod: paymentMethod,
-                AccountBuy: AccountBuy,
-            };
-            try {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (Array.isArray(newItem)) {
+                for (const item of newItem) {
+                    const order = {
+                        name: item.name,
+                        size: item.size,
+                        price: item.price,
+                        quantity: item.quantity,
+                        color: item.color,
+                        total: item.total,
+                        userName: userName,
+                        address: `${address.street} - ${address.city} - ${address.province} - ${address.country}`,
+                        phoneNumber: phoneNumber,
+                        paymentMethod: paymentMethod,
+                        AccountBuy: AccountBuy,
+                    };
+                    await fetchData(order);
+                }
+            } else {
+                const order = {
+                    name: newItem.name,
+                    size: newItem.size,
+                    price: newItem.price,
+                    quantity: newItem.quantity,
+                    color: newItem.color,
+                    total: newItem.total,
+                    userName: userName,
+                    address: `${address.street} - ${address.city} - ${address.province} - ${address.country}`,
+                    phoneNumber: phoneNumber,
+                    paymentMethod: paymentMethod,
+                    AccountBuy: AccountBuy,
+                };
                 await fetchData(order);
-            } catch (error) {
             }
-        };
+        } catch (error) {
+        }
+    };
+    
+
 
     return (
         <>
@@ -145,17 +167,27 @@ export default function Purchase() {
                                 <div class="product-total">Size</div>
                                 <div class="product-price">Total</div>
                             </div>
-
-                            <div class="product-info">
-                                <div class="product-name">{newItem?.name}</div>
-                                <div class="product-total">{newItem?.price}</div>
-                                <div class="product-quantity">{newItem?.quantity}</div>
-                                <div class="product-total">{newItem?.color}</div>
-                                <div class="product-total">{newItem?.size}</div>
-                                <div class="product-price">{newItem?.total}</div>
-                            </div>
-
-
+                            {Array.isArray(newItem) ? (
+                                newItem.map((item, index) => (
+                                    <div key={index} className="product-info">
+                                        <div className="product-name">{item.name}</div>
+                                        <div className="product-total">{item.price}</div>
+                                        <div className="product-quantity">{item.quantity}</div>
+                                        <div className="product-total">{item.color}</div>
+                                        <div className="product-total">{item.size}</div>
+                                        <div className="product-price">{item.total}</div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="product-info">
+                                    <div className="product-name">{newItem.name}</div>
+                                    <div className="product-total">{newItem.price}</div>
+                                    <div className="product-quantity">{newItem.quantity}</div>
+                                    <div className="product-total">{newItem.color}</div>
+                                    <div className="product-total">{newItem.size}</div>
+                                    <div className="product-price">{newItem.total}</div>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <button type="submit" style={{ marginTop: "5%" }} onClick={handleSubmit}>Purchase confirmation</button>

@@ -13,6 +13,8 @@ namespace BackEnd.Dtos
         [Required]
         public int Price { get; set; }
         [Required]
+        public string Color { get; set; }
+        [Required]
         public int Quantity { get; set; }
         [Required]
         public int Total { get; set; }
@@ -27,6 +29,9 @@ namespace BackEnd.Dtos
         public string PaymentMethod { get; set; }
         [Required]
         public string AccountBuy { get; set; }
+        [Required]
+        public int Status { get; set; }
+
 
     }
 }
