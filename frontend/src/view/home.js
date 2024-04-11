@@ -8,24 +8,25 @@ import { useSelector } from 'react-redux';
 export default function Home() {
     const [selectedItem, setSelectedItem] = useState(null);
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const { token } = useSelector(state => state.user);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        fetchData();
-
+        fetchData(searchTerm);
     }, []);
 
-    const fetchData = async () => {
+    const fetchData = async (searchItem) => {
+        setIsLoading(true);
         try {
-            const response = await Shirt.get(token);
+            const response = await Shirt.get(token, searchItem);
             setData(response.data);
-            setIsLoading(!isLoading);
+            setIsLoading(false);
         } catch (error) {
             setError(error);
-            setIsLoading(!isLoading);
+            setIsLoading(false);
         }
     };
 
@@ -55,6 +56,15 @@ export default function Home() {
         navigate(`/product/cart`);
     };
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSearch = () => {
+        fetchData(searchTerm);
+        const productSection = document.getElementById("product");
+        productSection.scrollIntoView({ behavior: "smooth" });
+    };
 
     return (
         <>
@@ -70,9 +80,17 @@ export default function Home() {
                             <li className={selectedItem === 1 ? 'selected' : ''} onClick={() => handleItemClick(1)}><a href="#product">Product</a></li>
                         </ul>
                     </div>
-                    <div className="cart">
-                        <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                    <div className="cart1">
+                        <input
+                            type="text"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            placeholder="Search..."
+                            className="search-input-home"
+                        />
+                        <FontAwesomeIcon icon={faSearch} className="search-icon-home" onClick={handleSearch} />
                     </div>
+
 
                     <div className="cart">
                         <FontAwesomeIcon icon={faShoppingCart} className="search-icon" onClick={() => handleCart()} />

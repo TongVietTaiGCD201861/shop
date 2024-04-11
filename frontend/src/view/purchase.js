@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import "../generalStyle/style.css"
 import { PurchaseProduct } from '../apiServices';
 import { useDispatch, useSelector } from 'react-redux';
+import { faLeftLong, faRightLeft, faRightLong, faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Purchase() {
 
@@ -42,9 +44,11 @@ export default function Purchase() {
 
     const fetchData = async (order) => {
         try {
-            const response = await PurchaseProduct.post(order, token);
+            await PurchaseProduct.post(order, token);
             setSuccessMessage('Successful purchase!');
-            navigate(`/product`);
+            if (successMessage) {
+                navigate(`/product`);
+            }
         } catch (error) {
         }
     };
@@ -88,8 +92,10 @@ export default function Purchase() {
         } catch (error) {
         }
     };
-    
 
+    const handleProductClick = () => {
+        navigate(`/product`);
+    };
 
     return (
         <>
@@ -110,7 +116,14 @@ export default function Purchase() {
 
             <div>
                 {successMessage && (
-                    <div className="success-message">{successMessage}</div>
+                    <div>
+                        <div onClick={() => handleProductClick()} className="return-to-home">
+                            <FontAwesomeIcon icon={faLeftLong} className="search-icon" style={{ marginRight: '15px' }} />
+                            Return Product
+                        </div>
+                        <div className="success-message">{successMessage}</div>
+
+                    </div>
                 )}
                 {!successMessage && (<div className="purchase-container">
                     <h2>Delivery address</h2>
@@ -194,7 +207,7 @@ export default function Purchase() {
                 </div>
                 )}
 
-            </div>
+            </div >
         </>
     )
 }

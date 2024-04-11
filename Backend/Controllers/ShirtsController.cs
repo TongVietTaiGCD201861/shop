@@ -31,15 +31,24 @@ namespace BackEnd.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IList<Tuple<Shirt, IList<Image>>>> GetAll()
+        [HttpGet("search")]
+        public async Task<IList<Tuple<Shirt, IList<Image>>>> GetAll([FromQuery] SearchDto searchDto)
         {
-            return _shirtService.GetAllShirtsAndImages();
+            if (string.IsNullOrEmpty(searchDto?.SearchItem))
+            {
+                return _shirtService.GetAllShirtsAndImages(null);
+            }
+            else
+            {
+                return _shirtService.GetAllShirtsAndImages(searchDto.SearchItem);
+            }
         }
 
+
+
+
+
         [HttpGet("{id:int}")]
-        [AllowAnonymous]
         public async Task<Tuple<Shirt, IList<Image>>> GetByIdS([FromRoute] int id)
         {
            

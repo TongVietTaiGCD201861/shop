@@ -15,7 +15,7 @@ builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.Environment
 builder.Configuration.AddEnvironmentVariables();
 builder.Configuration.GetSection("AppSettings").Get<AppSettings>(option => option.BindNonPublicProperties = true);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(AppSettings.ConnectionStrings));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

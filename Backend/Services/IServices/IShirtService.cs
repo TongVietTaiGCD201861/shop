@@ -5,7 +5,7 @@ namespace BackEnd.Services.IServices
 {
     public interface IShirtService
     {
-        IList<Tuple<Shirt, IList<Image>>> GetAllShirtsAndImages();
+        IList<Tuple<Shirt, IList<Image>>> GetAllShirtsAndImages(string searchItem);
         Tuple<Shirt, IList<Image>> GetById(int id);
         bool Delete(int id);
         Shirt Create(Shirt input);

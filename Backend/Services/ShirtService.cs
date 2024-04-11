@@ -30,7 +30,7 @@ namespace BackEnd.Services
             }
         }
 
-        public IList<Tuple<Shirt, IList<Image>>> GetAllShirtsAndImages()
+        public IList<Tuple<Shirt, IList<Image>>> GetAllShirtsAndImages(string searchTerm)
         {
             var result = (from s in _db.Shirts
                           join i in _db.Images on s.Id equals i.IdShirt into si
@@ -41,15 +41,34 @@ namespace BackEnd.Services
                               Image = img
                           }).ToList();
 
-            var groupedResult = result.GroupBy(x => x.Shirt.Id).Select(group =>
+            if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                var shirt = group.First().Shirt;
-                var images = group.Where(x => x.Image != null).Select(x => x.Image).ToList();
-                return new Tuple<Shirt, IList<Image>>(shirt, images);
-            }).ToList();
+                var filteredResult = result.Where(x => x.Shirt.Name.Contains(searchTerm)).ToList();
 
-            return groupedResult;
+                var groupedResultFiltered = filteredResult.GroupBy(x => x.Shirt.Id).Select(group =>
+                {
+                    var shirt = group.First().Shirt;
+                    var images = group.Where(x => x.Image != null).Select(x => x.Image).ToList();
+                    return new Tuple<Shirt, IList<Image>>(shirt, images);
+                }).ToList();
+
+                return groupedResultFiltered;
+            }
+            else
+            {
+                var groupedResultAll = result.GroupBy(x => x.Shirt.Id).Select(group =>
+                {
+                    var shirt = group.First().Shirt;
+                    var images = group.Where(x => x.Image != null).Select(x => x.Image).ToList();
+                    return new Tuple<Shirt, IList<Image>>(shirt, images);
+                }).ToList();
+
+                return groupedResultAll;
+            }
         }
+
+
+
 
         public Tuple<Shirt, IList<Image>> GetById(int id)
         {

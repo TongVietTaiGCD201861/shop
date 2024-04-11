@@ -15,11 +15,15 @@ export const Shirt = {
   BASEURLIMAGE,
 };
 
-function get(token) {
-  return axios.get(`${BASEURL}/Shirts`, {
-      headers: { Authorization: "Bearer " + token },
-    });
+export function get(token, searchItem) {
+  return axios.get(`${BASEURL}/Shirts/search`, {
+    params: {
+      SearchItem: searchItem
+    },
+    headers: { Authorization: "Bearer " + token }
+  });
 }
+
 
 function post(data, token) {
   return axios.post(`${BASEURL}/Shirts`, data, {

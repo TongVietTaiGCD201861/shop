@@ -163,7 +163,7 @@ const ProductDetail = () => {
             </div>
 
             <div style={{ display: 'flex', marginLeft: '5%', padding: '0% 5%' }}>
-                <div style={{ width: "10%", height: '85vh', overflowY: 'auto', cursor: 'pointer' }}>
+                <div style={{ width: "10%", height: '70vh', overflowY: 'auto', cursor: 'pointer' }}>
                     {Array.isArray(data?.item2) && data?.item2.map((item, index) => (
                         <img
                             key={index}
