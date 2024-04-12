@@ -1,9 +1,11 @@
 import { faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shirt } from '../apiServices';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch  } from 'react-redux';
+import { logout } from '../store/actions/user';
 
 export default function Home() {
     const [selectedItem, setSelectedItem] = useState(null);
@@ -12,7 +14,29 @@ export default function Home() {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const { token } = useSelector(state => state.user);
+    const role = useSelector(state => state.user.role);
     const [searchTerm, setSearchTerm] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
+    const popupRef = useRef(null);
+    const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                setShowPopup(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const togglePopup = () => {
+        setShowPopup(!showPopup);
+    };
 
     useEffect(() => {
         fetchData(searchTerm);
@@ -66,6 +90,25 @@ export default function Home() {
         productSection.scrollIntoView({ behavior: "smooth" });
     };
 
+    const handleLogout = () => {
+        setShowPopup(false);
+        setShowLogoutConfirmation(true);
+    };
+
+    const confirmLogout = () => {
+        navigate(`/login`);
+        dispatch(logout());
+        
+    };
+
+    const cancelLogout = () => {
+        setShowLogoutConfirmation(false);
+    };
+
+    const handleManagement = () => {
+        navigate(`/orderManagement`);
+    };
+
     return (
         <>
             <div className="header_1">
@@ -97,11 +140,26 @@ export default function Home() {
                     </div>
 
                     <div className="cart">
-                        <FontAwesomeIcon icon={faUser} className="search-icon" />
+                        <FontAwesomeIcon icon={faUser} className="search-icon" onClick={togglePopup} />
+                        {showPopup && (
+                            <div className="popup1" ref={popupRef}>
+                                <div className="popup-content1">
+                                    <button onClick={handleLogout}>Log out</button>
+                                    <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
+                                    {role === 1 && (<button onClick={handleManagement}>Commodity management</button> )}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
-
+            {showLogoutConfirmation && (
+                <div className="logout-confirmation">
+                    <p>Are you sure you want to sign out?</p>
+                    <button onClick={confirmLogout}>Agree</button>
+                    <button onClick={cancelLogout}>Cancel</button>
+                </div>
+            )}
             <div className="home" id="home">
                 <div className='image'>
                     <img className="image_home" src={require("../image/home/1.png")} alt="Shirt Store Logo" />
@@ -135,6 +193,21 @@ export default function Home() {
                     ))}
                 </div>
             </div>
+            <footer>
+                <div className="footer-content1">
+                    <h3>code opacity</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo iste corrupti doloribus odio sed!</p>
+                    <ul className="socials1">
+                        <li><a href="#"><FontAwesomeIcon icon={faFacebook} /></a></li>
+                        <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>
+                        <li><a href="#"><FontAwesomeIcon icon={faInstagram} /></a></li>
+                    </ul>
+                </div>
+                <div className="footer-bottom1">
+                    <p>copyright &copy;2024 codeOpacity. designed by <span>TaiTV</span></p>
+                </div>
+            </footer>
+
         </>
     );
 }

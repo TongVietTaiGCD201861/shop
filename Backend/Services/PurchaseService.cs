@@ -30,20 +30,32 @@ namespace BackEnd.Services
             }
         }
 
-        public void CreatePurchase(List<Purchase> purchases)
+        public IList<Purchase> GetAll()
         {
-            try
-            {
-                _db.Purchases.AddRange(purchases);
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            return _db.Purchases.ToList();
         }
 
+        public bool UpdatePurchaseStatus(int id, int status)
+        {
+            var purchaseToUpdate = _db.Purchases.FirstOrDefault(p => p.ID == id);
+
+            if (purchaseToUpdate == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                purchaseToUpdate.Status = status;
+                _db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
     }
 }

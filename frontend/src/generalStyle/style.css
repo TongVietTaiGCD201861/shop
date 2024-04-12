@@ -29,7 +29,7 @@
 }
 
 .menu {
-  width: 60%;
+  width: 75%;
 }
 
 .cart {
@@ -217,10 +217,10 @@
 
 .image-product-container {
   width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-left: 5%;
 }
 
 .image-product {
@@ -266,7 +266,7 @@
 }
 
 .product-detail-image {
-  height: 70vh;
+  height: 69vh;
   width: 80%;
 }
 
@@ -695,8 +695,7 @@
   margin: 0 auto;
 }
 
-.receiver-info {
-}
+.receiver-info {}
 
 .form-row {
   display: flex;
@@ -759,7 +758,7 @@
 
 .select-box:focus {
   outline: none;
-  border-color: #007bff; 
+  border-color: #007bff;
 }
 
 .order-info {
@@ -793,44 +792,46 @@
   flex: 2;
 }
 
-.product-price, .product-quantity, .product-total {
+.product-price,
+.product-quantity,
+.product-total {
   flex: 1;
   text-align: center;
 }
 
 button[type="submit"] {
-  background-color: #4CAF50; 
-  color: white; 
+  background-color: #4CAF50;
+  color: white;
   padding: 10px 20px;
-  font-size: 16px; 
-  border: none; 
+  font-size: 16px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button[type="submit"]:hover {
-  background-color: #45a049; 
+  background-color: #45a049;
 }
 
 button[type="submit"]:active {
-  background-color: #3e8e41; 
+  background-color: #3e8e41;
 }
 
 .success-message {
-  background-color: #4CAF50; 
-  color: white; 
-  padding: 10px 20px; 
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
   margin-bottom: 10px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 .back-to-products-button {
-  background-color: #008CBA; 
-  color: white; 
+  background-color: #008CBA;
+  color: white;
   padding: 10px 20px;
-  text-decoration: none; 
+  text-decoration: none;
   border: none;
-  border-radius: 5px; 
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -839,21 +840,258 @@ button[type="submit"]:active {
 }
 
 .return-to-home {
-  cursor: pointer; 
+  cursor: pointer;
   padding: 10px;
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
   display: inline-block;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .return-to-home:hover {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
 }
 
 .success-message {
-  color: green; 
-  margin-top: 10px; 
+  color: green;
+  margin-top: 10px;
+}
+
+footer {
+  background-color: #f5f5f5;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+.footer-content1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-content1 h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer-content1 p {
+  margin-bottom: 20px;
+}
+
+.socials1 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.socials1 li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.socials1 a {
+  color: #666;
+}
+
+.footer-bottom1 {
+  background-color: #e0e0e0;
+  padding: 10px 0;
+}
+
+.footer-bottom1 p {
+  margin: 0;
+}
+
+.footer-bottom1 span {
+  font-weight: bold;
+}
+
+.product-list-management {
+  font-family: Arial, sans-serif;
+}
+
+.table-container {
+  border-collapse: collapse;
+  margin-top: 2%;
+  max-height: 65vh;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+}
+
+.table-row {
+  display: table-row;
+}
+
+.header-management {
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f2f2f2;
+  z-index: 0;
+}
+
+.cell-management {
+  display: table-cell;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.cell-management:first-child {
+  border-left: none;
+}
+
+.cell-management:last-child {
+  border-right: none;
+}
+
+.button-edit {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-edit:hover {
+  background-color: #0056b3;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  width: 30%;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.popup select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.popup button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #0056b3;
+}
+
+.popup1 {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.popup-content1 {
+  padding: 10px;
+  display: grid;
+}
+
+.close-button1 {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-button1:hover {
+  background-color: #ddd;
 }
 
 
+.popup-content1 button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-content1 button:hover {
+  background-color: #ddd;
+}
+
+.popup-content1 button:last-child {
+  margin-bottom: 0;
+}
+
+.logout-confirmation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 30%;
+  max-width: 400px;
+  text-align: center; 
+}
+
+.logout-confirmation p {
+  margin-bottom: 15px;
+}
+
+.logout-confirmation button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-confirmation button:last-child {
+  margin-right: 0;
+}
+
+.logout-confirmation .popup-buttons {
+  display: flex;
+  justify-content: center; 
+}

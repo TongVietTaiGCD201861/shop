@@ -1,13 +1,14 @@
 import { faPlus, faSearch, faShoppingBasket, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { AddToCart } from '../store/actions/cart';
 import Instructions from "./instructions";
-import axios from 'axios';
 import { Shirt } from '../apiServices';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { logout } from '../store/actions/user';
 
 const ProductDetail = () => {
 
@@ -24,6 +25,10 @@ const ProductDetail = () => {
     const [cart, setCart] = useState([]);
     const [data, setData] = useState(null);
     const { token } = useSelector(state => state.user);
+    const [showPopup, setShowPopup] = useState(false);
+    const popupRef = useRef(null);
+    const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+    const role = useSelector(state => state.user.role);
 
     useEffect(() => {
         fetchProductDetail();
@@ -75,9 +80,9 @@ const ProductDetail = () => {
     const handleItemClick = (index) => {
         setSelectedItem(index);
         if (index === 0) {
-            window.location.href = 'http://localhost:3000/product#home';
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
         } else if (index === 1) {
-            window.location.href = 'http://localhost:3000/product#product';
+            document.getElementById('product').scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -124,8 +129,39 @@ const ProductDetail = () => {
             quantity: quantity,
             total: quantity * data?.item1?.price
         };
-        
+
         navigate('/product/purchase', { state: { newItem } });
+    };
+
+    // const handleItemClick = (index) => {
+    //     setSelectedItem(index);
+    //     if (index === 0) {
+    //         document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+    //     } else if (index === 1) {
+    //         document.getElementById('product').scrollIntoView({ behavior: 'smooth' });
+    //     }
+    // };
+    const togglePopup2 = () => {
+        setShowPopup(!showPopup);
+    };
+
+    const handleLogout = () => {
+        setShowPopup(false);
+        setShowLogoutConfirmation(true);
+    };
+
+    const confirmLogout = () => {
+        navigate(`/login`);
+        dispatch(logout());
+        
+    };
+
+    const cancelLogout = () => {
+        setShowLogoutConfirmation(false);
+    };
+
+    const handleManagement = () => {
+        navigate(`/orderManagement`);
     };
 
     return (
@@ -142,19 +178,32 @@ const ProductDetail = () => {
                             <li className={selectedItem === 1 ? 'selected' : ''} onClick={() => handleItemClick(1)}><a href="http://localhost:3000/product">Product</a></li>
                         </ul>
                     </div>
-                    <div className="cart">
-                        <FontAwesomeIcon icon={faSearch} className="search-icon" />
-                    </div>
 
                     <div className="cart">
                         <FontAwesomeIcon icon={faShoppingCart} className="search-icon" onClick={() => handleCart()} />
                     </div>
 
                     <div className="cart">
-                        <FontAwesomeIcon icon={faUser} className="search-icon" />
+                        <FontAwesomeIcon icon={faUser} className="search-icon" onClick={togglePopup2} />
+                        {showPopup && (
+                            <div className="popup1" ref={popupRef}>
+                                <div className="popup-content1">
+                                    <button onClick={handleLogout}>Log out</button>
+                                    <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
+                                    {role === 1 && (<button onClick={handleManagement}>Commodity management</button>)}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
+            {showLogoutConfirmation && (
+                <div className="logout-confirmation">
+                    <p>Are you sure you want to sign out?</p>
+                    <button onClick={confirmLogout}>Agree</button>
+                    <button onClick={cancelLogout}>Cancel</button>
+                </div>
+            )}
 
             <div className="breadcrumb">
                 <Link to="/product" className="breadcrumb-item-hover">Product</Link>
@@ -163,7 +212,7 @@ const ProductDetail = () => {
             </div>
 
             <div style={{ display: 'flex', marginLeft: '5%', padding: '0% 5%' }}>
-                <div style={{ width: "10%", height: '70vh', overflowY: 'auto', cursor: 'pointer' }}>
+                <div style={{ width: "10%", height: '69vh', overflowY: 'auto', cursor: 'pointer' }}>
                     {Array.isArray(data?.item2) && data?.item2.map((item, index) => (
                         <img
                             key={index}
@@ -281,7 +330,7 @@ const ProductDetail = () => {
                     </div>
 
                     <div style={{ paddingTop: '4%', display: 'flex', paddingBottom: '5%' }}>
-                        <div style={{ width: '50%', padding: ' 0 2.5%' }}  onClick={handlePurchase}>
+                        <div style={{ width: '50%', padding: ' 0 2.5%' }} onClick={handlePurchase}>
                             <button className='btn-signup'><FontAwesomeIcon icon={faShoppingBasket} /> Purchase</button>
                         </div>
                         <div style={{ width: '45%', padding: '0% 0 0 6.5%' }} onClick={handleAddToCart}>
@@ -294,6 +343,20 @@ const ProductDetail = () => {
 
                 </div>
             </div>
+            <footer>
+                <div className="footer-content1">
+                    <h3>code opacity</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo iste corrupti doloribus odio sed!</p>
+                    <ul className="socials1">
+                        <li><a href="#"><FontAwesomeIcon icon={faFacebook} /></a></li>
+                        <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>
+                        <li><a href="#"><FontAwesomeIcon icon={faInstagram} /></a></li>
+                    </ul>
+                </div>
+                <div className="footer-bottom1">
+                    <p>copyright &copy;2024 codeOpacity. designed by <span>TaiTV</span></p>
+                </div>
+            </footer>
         </>
     );
 };

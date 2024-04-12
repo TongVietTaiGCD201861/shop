@@ -12,6 +12,7 @@ import ProductDetail from "../view/productDetail";
 import Home from "../view/home";
 import Cart from "../view/cart";
 import Purchase from "../view/purchase";
+import OrderManagement from "../view/orderManagement";
 
 export const router = createBrowserRouter([
   {
@@ -20,14 +21,17 @@ export const router = createBrowserRouter([
     children: [
       { path: "", element: <Login /> },
       { path: "login", element: <Login /> },
+      { path: "reset-password/login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "verify-email", element: <VerifyEmail /> },
       { path: "reset-password", element: <ResetPassword /> },
       { path: "forgot-password", element: <ForgotPassword /> },
+      { path: "reset-password/forgot-password", element: <ForgotPassword /> },
       { path: "product", element: <Home /> },
       { path: "product/cart", element: <Cart /> },
       { path: "product/purchase", element: <Purchase /> },
       { path: "product/:id", element: <ProductDetail /> },
+      { path: "orderManagement", element: <OrderManagement /> },
       {
         element: <RequireAuth />,
         children: [

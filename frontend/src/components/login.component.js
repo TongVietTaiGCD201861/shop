@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import backgroundImage from '../image/home/OIP.jpg';
 
 function Copyright(props) {
   return (
@@ -57,7 +58,6 @@ const Login = () => {
   };
 
   const onGoogleLoginSuccess = (credentialResponse) => {
-    // Handle the successful Google login response here
     console.log("Google login success:", credentialResponse);
     User.loginGoogle(credentialResponse.credential)
       .then((res) => {
@@ -70,39 +70,19 @@ const Login = () => {
   };
 
   const onGoogleLoginFailure = () => {
-    // Handle Google login failure here
     console.error("Google login failure:");
   };
 
   return (
     <>
-      <div className="header_1" style={{marginBottom:'3%'}}>
-        <div className="header">
-          <div className="logo-container" onClick={() => window.location.href = "http://localhost:3000/product"}>
-            <img className="logo" src="https://img.freepik.com/premium-vector/tshirt-logo-clothing-logo-apparel-store-icon-fashion-logo-design-tshirt-icon-template_657888-112.jpg" alt="Shirt Store Logo" />
-            <span className="store-name">Shirt Store</span>
-          </div>
-        </div>
-      </div>
-      <Grid container component="main" sx={{ height: "80vh" }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: "url(https://source.unsplash.com/random?wallpapers)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        style={{ minHeight: "90vh", backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}
+        component="main"
+      >
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ background: 'rgb(179 155 135 / 49%)' }}>
           <Box
             sx={{
               my: 8,

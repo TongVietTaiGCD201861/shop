@@ -7,6 +7,8 @@ namespace BackEnd.Services.IServices
     {
         Purchase Create(Purchase input);
 
-        void CreatePurchase(List<Purchase> purchases);
+        IList<Purchase> GetAll();
+
+        bool UpdatePurchaseStatus(int id, int status);
     }
 }

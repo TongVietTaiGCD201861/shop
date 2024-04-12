@@ -304,7 +304,7 @@ public class UserService : IUserService
 
     public async Task ForgotPassword(ForgotPasswordRequest model, string origin)
     {
-        var account = await _db.Users.SingleOrDefaultAsync(x => x.Email == model.Email);
+        var account = await _db.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
 
         // always return ok response to prevent email enumeration
         if (account == null) return;

@@ -10,12 +10,13 @@ export const PurchaseProduct = {
   put,
   getById,
   _delete,
+  updateStatus
 };
 
 function get(token) {
   return axios.get(`${BASEURL}/Purchases`, {
-      headers: { Authorization: "Bearer " + token },
-    });
+    headers: { Authorization: "Bearer " + token },
+  });
 }
 
 function post(data, token) {
@@ -26,6 +27,12 @@ function post(data, token) {
 
 function getById(id, token) {
   return axios.get(`${BASEURL}/Purchases/${id}`, {
+    headers: { Authorization: "Bearer " + token },
+  });
+}
+
+function updateStatus(id, status, token) {
+  return axios.post(`${BASEURL}/Purchases/update/${id}/${status}`, {
     headers: { Authorization: "Bearer " + token },
   });
 }

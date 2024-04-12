@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import "../generalStyle/style.css"
-import { PurchaseProduct } from '../apiServices';
-import { useDispatch, useSelector } from 'react-redux';
-import { faLeftLong, faRightLeft, faRightLong, faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { PurchaseProduct } from '../apiServices';
+import "../generalStyle/style.css";
 
 export default function Purchase() {
 
@@ -172,13 +172,13 @@ export default function Purchase() {
                     <div className="order-info">
                         <h2>Information line</h2>
                         <div className="order-summary">
-                            <div class="product-info2">
-                                <div class="product-name">Product's name</div>
-                                <div class="product-total">Price</div>
-                                <div class="product-quantity">Quantity</div>
-                                <div class="product-total">Color</div>
-                                <div class="product-total">Size</div>
-                                <div class="product-price">Total</div>
+                            <div className="product-info2">
+                                <div className="product-name">Product's name</div>
+                                <div className="product-total">Price</div>
+                                <div className="product-quantity">Quantity</div>
+                                <div className="product-total">Color</div>
+                                <div className="product-total">Size</div>
+                                <div className="product-price">Total</div>
                             </div>
                             {Array.isArray(newItem) ? (
                                 newItem.map((item, index) => (

@@ -53,6 +53,26 @@ namespace BackEnd.Controllers
                 return Ok(purchase);
             }
 
-      
+        [HttpGet]
+        [Authorize(Role.Admin)]
+        public IActionResult GetAll()
+        {
+            var purchases = _purchaseService.GetAll();
+            return Ok(purchases);
+        }
+
+        [HttpPost("update/{id:int}/{status:int}")]
+        public ActionResult UpdatePurchaseStatus(int id, int status)
+        {
+            var success = _purchaseService.UpdatePurchaseStatus(id, status);
+            if (success)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound(); 
+            }
+        }
     }
 }
