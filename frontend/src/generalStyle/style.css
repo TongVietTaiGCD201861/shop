@@ -1070,7 +1070,7 @@ footer {
   padding: 20px;
   width: 30%;
   max-width: 400px;
-  text-align: center; 
+  text-align: center;
 }
 
 .logout-confirmation p {
@@ -1093,5 +1093,121 @@ footer {
 
 .logout-confirmation .popup-buttons {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
+}
+
+.feedback {
+  padding-top: 1%;
+  padding-bottom: 3%;
+}
+
+.box-container {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.box-container h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.container-product {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.content-product {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 10px;
+  width: 30%;
+}
+
+.input-product {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-top: 2%;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.send-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.send-button:hover {
+  background-color: #0056b3;
+}
+
+.success-message-send {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.comment {
+  border-top: 1px solid #ccc;
+  padding: 2% 1%;
+  margin-top: 2%;
+}
+
+.user-info {
+  margin-right: 20px;
+  display: flex;
+  margin-bottom: 2%;
+}
+
+
+.user-name {
+  font-weight: bold;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.stars {
+  color: gold;
+  margin-right: 5px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.text,
+.description {
+  margin-bottom: 5px;
+}
+
+.date {
+  margin-left: 2%;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
 }

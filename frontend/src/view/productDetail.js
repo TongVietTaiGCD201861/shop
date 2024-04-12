@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { AddToCart } from '../store/actions/cart';
 import Instructions from "./instructions";
-import { Shirt } from '../apiServices';
+import { Feedback, Shirt } from '../apiServices';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { logout } from '../store/actions/user';
 
@@ -24,22 +24,38 @@ const ProductDetail = () => {
     const [selectedColor, setSelectedColor] = useState(null);
     const [cart, setCart] = useState([]);
     const [data, setData] = useState(null);
+    const [dataFeedback, setDataFeedback] = useState(null);
     const { token } = useSelector(state => state.user);
     const [showPopup, setShowPopup] = useState(false);
     const popupRef = useRef(null);
     const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
     const role = useSelector(state => state.user.role);
+    const user = useSelector(state => state.user.firstName);
+    const [inputValue, setInputValue] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
         fetchProductDetail();
     }, [id]);
 
+    const fetchProduct = async () => {
+        try {
+            const response = await Feedback.get(parseInt(id), token);
+            // setDataFeedback(response?.dataFeedback);
+            setDataFeedback(response?.data);
+        } catch (error) {
+            console.error('Error fetching product detail:', error);
+            setIsLoading(isLoading);
+        }
+    };
+    const commentCount = dataFeedback ? dataFeedback.length : 0;
     const fetchProductDetail = async () => {
         try {
             const response = await Shirt.getById(id, token);
             setData(response?.data);
             setSelectedImagePath(response?.data?.item2[0]?.imgPath);
             setIsLoading(!isLoading);
+            fetchProduct();
         } catch (error) {
             console.error('Error fetching product detail:', error);
             setIsLoading(isLoading);
@@ -60,14 +76,14 @@ const ProductDetail = () => {
         }
     };
 
-    if (isLoading) {
-        return (
-            <div className="loading-container">
-                <div className="loading-spinner"></div>
-                <div>Loading...</div>
-            </div>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div className="loading-container">
+    //             <div className="loading-spinner"></div>
+    //             <div>Loading...</div>
+    //         </div>
+    //     );
+    // }
 
     const handleCart = () => {
         navigate(`/product/cart`);
@@ -110,7 +126,6 @@ const ProductDetail = () => {
             quantity: quantity,
             total: quantity * data?.item1?.price
         };
-        console.log(newItem);
         dispatch(AddToCart(newItem))
         navigate(`/product/cart`);
     };
@@ -132,14 +147,8 @@ const ProductDetail = () => {
 
         navigate('/product/purchase', { state: { newItem } });
     };
+    console.log(dataFeedback);
 
-    // const handleItemClick = (index) => {
-    //     setSelectedItem(index);
-    //     if (index === 0) {
-    //         document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-    //     } else if (index === 1) {
-    //         document.getElementById('product').scrollIntoView({ behavior: 'smooth' });
-    //     }
     // };
     const togglePopup2 = () => {
         setShowPopup(!showPopup);
@@ -153,7 +162,7 @@ const ProductDetail = () => {
     const confirmLogout = () => {
         navigate(`/login`);
         dispatch(logout());
-        
+
     };
 
     const cancelLogout = () => {
@@ -162,6 +171,33 @@ const ProductDetail = () => {
 
     const handleManagement = () => {
         navigate(`/orderManagement`);
+    };
+
+    const handleChange = (event) => {
+        setInputValue(event.target.value);
+    };
+
+    const handleSubmit = () => {
+        console.log('Dữ liệu từ textarea:', inputValue);
+        const dataCreate = {
+            IdShirt: parseInt(id),
+            UserName: user,
+            Description: inputValue
+        };
+        fetchCreate(dataCreate);
+    };
+
+    const fetchCreate = async (dataCreate) => {
+        try {
+            await Feedback.post(dataCreate, token);
+            setSuccessMessage('Feedback sent successfully!');
+            setTimeout(() => {
+                setSuccessMessage('');
+            }, 500);
+            setInputValue('');
+            fetchProduct();
+        } catch (error) {
+        }
     };
 
     return (
@@ -342,6 +378,55 @@ const ProductDetail = () => {
                     <div style={{ borderBottom: '1px solid #ccc', paddingBottom: '0%' }}></div>
 
                 </div>
+            </div>
+            <div style={{ borderBottom: '1px solid #ccc', paddingTop: '2%' }}></div>
+            <div className='feedback'>
+                <div style={{ width: '80%', marginLeft: '10%' }}>
+                    <div className="box-container" >
+                        <h3>Feedback</h3>
+
+                        <div className="container-product" style={{ width: "100%" }}>
+                            <textarea type="text" className="input-product" placeholder="Enter here......" value={inputValue} onChange={handleChange}></textarea>
+
+                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: '1%' }}>
+
+                                <button className="send-button" onClick={handleSubmit}>Send feedback</button>
+                                {successMessage && <div className="success-message-send">{successMessage}</div>}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className="box-container" style={{ marginTop: "3%" }}>
+                        <h3>Product reviews ({commentCount})</h3>
+
+                        <div>
+                            {dataFeedback?.map((comment, index) => (
+                                <div className="comment" key={index}>
+                                    <div className="user-info">
+                                        <div className="user-avatar"></div>
+                                        <div style={{ width: "30%" }}>
+                                            <div>
+                                                <span className="user-name">{comment?.userName}</span>
+                                            </div>
+                                            <div className="rating">
+                                                {/* <span className="stars">★★★★☆</span> */}
+                                                <span className="date">{comment?.createDate}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="comment-content">
+                                        <div className="description">{comment?.description}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>
+                </div>
+
+
+
             </div>
             <footer>
                 <div className="footer-content1">
