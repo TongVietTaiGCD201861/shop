@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BackEnd.Models;
+using BackEnd.Dtos;
 
 namespace BackEnd.Data
 {
@@ -12,6 +13,7 @@ namespace BackEnd.Data
         public DbSet<Image> Images { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
         public IEnumerable<object> ChatUsers { get; internal set; }
 
         //public DbSet<Admin> Admin { get; set; }
