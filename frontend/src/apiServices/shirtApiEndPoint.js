@@ -13,6 +13,7 @@ export const Shirt = {
   getById,
   _delete,
   BASEURLIMAGE,
+  uploadFile
 };
 
 export function get(token, searchItem) {
@@ -27,6 +28,12 @@ export function get(token, searchItem) {
 
 function post(data, token) {
   return axios.post(`${BASEURL}/Shirts`, data, {
+    headers: { Authorization: "Bearer " + token },
+  });
+}
+
+function uploadFile(id,data, token) {
+  return axios.post(`${BASEURL}/Shirts/${id}/upload-image`, data, {
     headers: { Authorization: "Bearer " + token },
   });
 }

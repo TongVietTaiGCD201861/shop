@@ -4,7 +4,7 @@ import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shirt } from '../apiServices';
-import { useSelector,useDispatch  } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store/actions/user';
 
 export default function Home() {
@@ -22,6 +22,7 @@ export default function Home() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        fetchData(searchTerm);
         const handleClickOutside = (event) => {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
                 setShowPopup(false);
@@ -38,9 +39,6 @@ export default function Home() {
         setShowPopup(!showPopup);
     };
 
-    useEffect(() => {
-        fetchData(searchTerm);
-    }, []);
 
     const fetchData = async (searchItem) => {
         setIsLoading(true);
@@ -98,7 +96,7 @@ export default function Home() {
     const confirmLogout = () => {
         navigate(`/login`);
         dispatch(logout());
-        
+
     };
 
     const cancelLogout = () => {
@@ -106,7 +104,11 @@ export default function Home() {
     };
 
     const handleManagement = () => {
-        navigate(`/orderManagement`);
+        navigate(`/admin/order-management`);
+    };
+
+    const handleProductManagement = () => {
+        navigate(`/admin/product-management`);
     };
 
     return (
@@ -146,7 +148,13 @@ export default function Home() {
                                 <div className="popup-content1">
                                     <button onClick={handleLogout}>Log out</button>
                                     <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
-                                    {role === 1 && (<button onClick={handleManagement}>Commodity management</button> )}
+                                    {role === 1 && (
+                                        <div>
+                                            <button onClick={handleManagement}>Commodity management</button>
+                                            <button onClick={handleProductManagement}>Product management</button>
+
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}

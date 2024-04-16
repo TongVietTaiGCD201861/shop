@@ -58,7 +58,7 @@ const ProductDetail = () => {
             fetchProduct();
         } catch (error) {
             console.error('Error fetching product detail:', error);
-            setIsLoading(isLoading);
+            setIsLoading(!isLoading);
         }
     };
 
@@ -76,14 +76,14 @@ const ProductDetail = () => {
         }
     };
 
-    // if (isLoading) {
-    //     return (
-    //         <div className="loading-container">
-    //             <div className="loading-spinner"></div>
-    //             <div>Loading...</div>
-    //         </div>
-    //     );
-    // }
+    if (isLoading) {
+        return (
+            <div className="loading-container">
+                <div className="loading-spinner"></div>
+                <div>Loading...</div>
+            </div>
+        );
+    }
 
     const handleCart = () => {
         navigate(`/product/cart`);
@@ -170,7 +170,7 @@ const ProductDetail = () => {
     };
 
     const handleManagement = () => {
-        navigate(`/orderManagement`);
+        navigate(`/admin/order-management`);
     };
 
     const handleChange = (event) => {
@@ -200,6 +200,10 @@ const ProductDetail = () => {
         }
     };
 
+    const handleProductManagement = () => {
+        navigate(`/admin/product-management`);
+    };
+
     return (
         <>
             <div className="header_1">
@@ -226,7 +230,13 @@ const ProductDetail = () => {
                                 <div className="popup-content1">
                                     <button onClick={handleLogout}>Log out</button>
                                     <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
-                                    {role === 1 && (<button onClick={handleManagement}>Commodity management</button>)}
+                                    {role === 1 && (
+                                        <div>
+                                            <button onClick={handleManagement}>Commodity management</button>
+                                            <button onClick={handleProductManagement}>Product management</button>
+
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}

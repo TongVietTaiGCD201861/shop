@@ -82,12 +82,12 @@ export default function OrderManagement() {
         5: 'Delivery failed'
     };
 
-    
+
     return (
         <>
             <div className="header_1">
                 <div className="header" style={{ padding: '25px 0', width: '80% !important' }}>
-                    <div className="logo-container" onClick={() => window.location.href = "http://localhost:3000/Management"} style={{ width: '50%' }}>
+                    <div className="logo-container" onClick={() => window.location.href = "http://localhost:3000/product"} style={{ width: '50%' }}>
                         <div style={{ borderRight: '1px solid #ccc', paddingRight: '2%' }}>
                             <img className="logo" src="https://img.freepik.com/premium-vector/tshirt-logo-clothing-logo-apparel-store-icon-fashion-logo-design-tshirt-icon-template_657888-112.jpg" alt="Shirt Store Logo" />
                             <span className="store-name">Shirt Store</span>
@@ -107,7 +107,7 @@ export default function OrderManagement() {
             <div className="product-list-management">
                 <div className="table-container">
                     <div className="table-row header-management">
-                        <div className="table-cell cell-management" >Name</div>
+                        <div className="table-cell cell-management">Name</div>
                         <div className="table-cell cell-management">Size</div>
                         <div className="table-cell cell-management">Price</div>
                         <div className="table-cell cell-management">Color</div>
@@ -149,7 +149,7 @@ export default function OrderManagement() {
                             <option value={4}>Return</option>
                             <option value={5}>Delivery failed</option>
                         </select>
-                        <div>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <button onClick={handleSaveStatus}>Confirm</button>
                             <button onClick={handleClosePopup}>Close</button>
                         </div>

@@ -84,48 +84,55 @@ namespace BackEnd.Services
             return Tuple.Create(shirt, (IList<Image>)images);
         }
 
-         public Tuple<Shirt, IList<Image>> Update(int id, Shirt input, IList<Image> images)
- {
-     using (var transaction = _db.Database.BeginTransaction())
-     {
-         try
-         {
-             var existingShirt = _db.Shirts.SingleOrDefault(s => s.Id == id);
+        public Tuple<Shirt, IList<Image>> Update(int id, Shirt input, IList<Image> images)
+        {
+            using (var transaction = _db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var existingShirt = _db.Shirts.SingleOrDefault(s => s.Id == id);
 
-             if (existingShirt == null)
-             {
-                 throw new ArgumentException($"Shirt with ID {id} not found.");
-             }
-             existingShirt.Id =input.Id;
-             existingShirt.Name = input.Name;
-             existingShirt.Brand = input.Brand;
-             existingShirt.CreatedDate = input.CreatedDate;
-             existingShirt.Sex = input.Sex;
-             existingShirt.Price = input.Price;
+                    if (existingShirt == null)
+                    {
+                        throw new ArgumentException($"Shirt with ID {id} not found.");
+                    }
 
-             var existingImages = _db.Images.Where(img => img.IdShirt == id).ToList();
-             _db.Images.RemoveRange(existingImages);
+                    existingShirt.Id = input.Id;
+                    existingShirt.Name = input.Name;
+                    existingShirt.Brand = input.Brand;
+                    existingShirt.CreatedDate = input.CreatedDate;
+                    existingShirt.Sex = input.Sex;
+                    existingShirt.Price = input.Price;
 
-             foreach (var image in images)
-             {
-                 image.Id = 0;
-                 image.IdShirt = id;
-                 _db.Images.Add(image);
-             }
+                    var existingImages = _db.Images.Where(img => img.IdShirt == id).ToList();
+                    _db.Images.RemoveRange(existingImages);
 
-             _db.SaveChanges();
-             transaction.Commit();
+                    foreach (var image in images)
+                    {
+                        if (image.Id == 0)
+                        {
+                            _db.Images.Add(image);
+                        }
+                        else
+                        {
+                            _db.Entry(image).State = EntityState.Modified;
+                        }
+                    }
 
-             return Tuple.Create(existingShirt, images);
-         }
-         catch (Exception ex)
-         {
-             Console.WriteLine(ex);
-             transaction.Rollback();
-             throw;
-         }
-     }
- }
+                    _db.SaveChanges();
+                    transaction.Commit();
+
+                    return Tuple.Create(existingShirt, images);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
 
 
         public bool Delete(int id)
