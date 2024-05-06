@@ -6,9 +6,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { AddToCart } from '../store/actions/cart';
 import Instructions from "./instructions";
-import { Feedback, Shirt } from '../apiServices';
+import { Feedback, PurchaseProduct, Shirt } from '../apiServices';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { logout } from '../store/actions/user';
+import OrderStatus from './orderStatus';
 
 const ProductDetail = () => {
 
@@ -26,16 +27,22 @@ const ProductDetail = () => {
     const [data, setData] = useState(null);
     const [dataFeedback, setDataFeedback] = useState(null);
     const { token } = useSelector(state => state.user);
+    const email = useSelector(state => state.user.email);
     const [showPopup, setShowPopup] = useState(false);
     const popupRef = useRef(null);
     const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
     const role = useSelector(state => state.user.role);
     const user = useSelector(state => state.user.firstName);
     const [inputValue, setInputValue] = useState('');
+    const [showPopupOrder, setShowPopupOrder] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
+    const [error, setError] = useState(null);
+    const [dataOrder, setDataOrder] = useState(null);
+    const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
 
     useEffect(() => {
         fetchProductDetail();
+        fetchDataOrder();
     }, [id]);
 
     const fetchProduct = async () => {
@@ -46,6 +53,20 @@ const ProductDetail = () => {
         } catch (error) {
             console.error('Error fetching product detail:', error);
             setIsLoading(isLoading);
+        }
+    };
+
+    const fetchDataOrder = async () => {
+        try {
+            console.log(token);
+            console.log(email);
+            const responseOrder = await PurchaseProduct.getOrder(token, email);
+            setDataOrder(responseOrder.data);
+            console.log(dataOrder);
+            setIsLoading(false);
+        } catch (error) {
+            setError(error);
+            setIsLoading(false);
         }
     };
     const commentCount = dataFeedback ? dataFeedback.length : 0;
@@ -147,9 +168,7 @@ const ProductDetail = () => {
 
         navigate('/product/purchase', { state: { newItem } });
     };
-    console.log(dataFeedback);
 
-    // };
     const togglePopup2 = () => {
         setShowPopup(!showPopup);
     };
@@ -204,6 +223,15 @@ const ProductDetail = () => {
         navigate(`/admin/product-management`);
     };
 
+    const handleOrderPlaced = () => {
+        setShowPopupOrder(false);
+        setShowOrderConfirmation(true);
+    };
+
+    const cancelOrder = () => {
+        setShowOrderConfirmation(false);
+    };  
+
     return (
         <>
             <div className="header_1">
@@ -230,6 +258,7 @@ const ProductDetail = () => {
                                 <div className="popup-content1">
                                     <button onClick={handleLogout}>Log out</button>
                                     <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
+                                    <button onClick={handleOrderPlaced}>Order placed</button>
                                     {role === 1 && (
                                         <div>
                                             <button onClick={handleManagement}>Commodity management</button>
@@ -374,6 +403,44 @@ const ProductDetail = () => {
                         </div>
 
                     </div>
+
+                    {showOrderConfirmation && (
+                <div className="order-confirmation">
+                    <div style={{ borderBottom: "1px solid #ccc", paddingBottom: '1%', display: 'flex' }}>
+                        <div style={{ width: '95%' }}>My order</div>
+                        <div onClick={cancelOrder}
+                            style={{
+                                cursor: 'pointer',
+                                border: '1px solid #ccc',
+                                padding: '5px',
+                                borderRadius: '10px'
+                            }}>X</div>
+                    </div>
+
+                    <div className="product-list-management1" style={{ border: 'none' }}>
+                        <div className="table-container1" style={{ border: 'none', overflow: 'auto', maxHeight: '500px' }}>
+                            <div className="table-row1 header-management1" style={{ backgroundColor: "#f2f2f2", fontWeight: "bold", border: 'none' }}>
+                                <div className="table-cell1 cell-management1" style={{ width: "5%", textAlign: 'center', border: 'none' }}>STT</div>
+                                <div className="table-cell1 cell-management1" style={{ width: "65%", border: 'none' }}>Name</div>
+                                <div className="table-cell1 cell-management1" style={{ width: "10%", textAlign: 'center', border: 'none' }}>Price</div>
+                                <div className="table-cell1 cell-management1" style={{ width: "20%", textAlign: 'center', border: 'none' }}>Order status</div>
+                            </div>
+                            {dataOrder && dataOrder?.length > 0 ? (
+                                dataOrder?.map((order, index) => (
+                                    <div className="table-row1 header-management2" key={index}>
+                                        <div className="table-cell1 cell-management1" style={{ width: "5%", textAlign: 'center', border: 'none' }}>{index + 1}</div>
+                                        <div className="table-cell1 cell-management1" style={{ width: "65%", border: 'none' }}>{order.name}</div>
+                                        <div className="table-cell1 cell-management1" style={{ width: "10%", textAlign: 'center', border: 'none' }}>{order.total}</div>
+                                        <div className="table-cell1 cell-management1" style={{ width: "20%", textAlign: 'center', border: 'none' }}><OrderStatus status={order.status} /></div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="no-data-message">No data available</div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
 
                     <div style={{ paddingTop: '4%', display: 'flex', paddingBottom: '5%' }}>
                         <div style={{ width: '50%', padding: ' 0 2.5%' }} onClick={handlePurchase}>

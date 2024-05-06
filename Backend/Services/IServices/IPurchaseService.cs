@@ -10,5 +10,7 @@ namespace BackEnd.Services.IServices
         IList<Purchase> GetAll();
 
         bool UpdatePurchaseStatus(int id, int status);
+
+        IList<Purchase> GetOrder(string searchOrder);
     }
 }
