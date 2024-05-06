@@ -143,6 +143,10 @@ export default function ProductManagement() {
         }
     };
 
+    const handleOpenProfile = () => {
+        navigate(`/profile`);
+    };
+
     return (
         <>
             <div className="header_1">
@@ -180,6 +184,9 @@ export default function ProductManagement() {
                                 </div>
                             </div>
                         )}
+                    </div>
+                    <div className="cart-image" onClick={handleOpenProfile}>
+                        <FontAwesomeIcon icon={faUser} className="search-icon" />
                     </div>
                 </div>
             </div>

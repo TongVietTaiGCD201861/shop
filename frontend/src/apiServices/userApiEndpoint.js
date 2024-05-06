@@ -11,7 +11,14 @@ export const User = {
   validateResetToken,
   resetPassword,
   loginGoogle,
+  getById,
 };
+
+function getById(id, token) {
+  return axios.get(`${BASEURL}/Users/${id}`, {
+    headers: { Authorization: "Bearer " + token },
+  });
+}
 
 function login(payload) {
   return axios.post(`${BASEURL}/Users/authenticate`, payload);

@@ -15,7 +15,6 @@ export default function OrderManagement() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const role = useSelector(state => state.user.role);
-    console.log(role);
 
     useEffect(() => {
         fetchData();
@@ -46,7 +45,6 @@ export default function OrderManagement() {
 
     const handleStatusChange = (event) => {
         setSelectedStatus(event.target.value);
-        console.log(event.target.value);
     };
 
     const handleSaveStatus = () => {

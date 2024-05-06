@@ -58,11 +58,8 @@ const ProductDetail = () => {
 
     const fetchDataOrder = async () => {
         try {
-            console.log(token);
-            console.log(email);
             const responseOrder = await PurchaseProduct.getOrder(token, email);
             setDataOrder(responseOrder.data);
-            console.log(dataOrder);
             setIsLoading(false);
         } catch (error) {
             setError(error);
@@ -197,7 +194,6 @@ const ProductDetail = () => {
     };
 
     const handleSubmit = () => {
-        console.log('Dữ liệu từ textarea:', inputValue);
         const dataCreate = {
             IdShirt: parseInt(id),
             UserName: user,
@@ -231,6 +227,10 @@ const ProductDetail = () => {
     const cancelOrder = () => {
         setShowOrderConfirmation(false);
     };  
+
+    const handleOpenProfile = () => {
+        navigate(`/profile`);
+    };
 
     return (
         <>
@@ -269,6 +269,9 @@ const ProductDetail = () => {
                                 </div>
                             </div>
                         )}
+                    </div>
+                    <div className="cart-image" onClick={handleOpenProfile}>
+                        <FontAwesomeIcon icon={faUser} className="search-icon" />
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import Cart from "../view/cart";
 import Purchase from "../view/purchase";
 import OrderManagement from "../view/orderManagement";
 import ProductManagement from "../view/productManagement";
+import Profile from "../view/profile";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: "product/:id", element: <ProductDetail /> },
       { path: "admin/order-management", element: <OrderManagement /> },
       { path: "admin/product-management", element: <ProductManagement /> },
+      { path: "profile", element: <Profile /> },
       {
         element: <RequireAuth />,
         children: [

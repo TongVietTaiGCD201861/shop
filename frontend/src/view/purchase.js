@@ -24,7 +24,6 @@ export default function Purchase() {
     });
     const { token } = useSelector(state => state.user);
     const AccountBuy = useSelector(state => state.user.email);
-    console.log(AccountBuy);
 
     const handleUserNameChange = (e) => {
         setUserName(e.target.value);

@@ -1,4 +1,4 @@
-import { faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBuildingUser, faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
@@ -51,7 +51,6 @@ export default function Home() {
         try {
             const response = await Shirt.get(token, searchItem);
             setData(response.data);
-            console.log(response.data);
             setIsLoading(false);
         } catch (error) {
             setError(error);
@@ -62,8 +61,6 @@ export default function Home() {
     const fetchDataOrder = async () => {
         setIsLoading(true);
         try {
-            console.log(token);
-            console.log(email);
             const responseOrder = await PurchaseProduct.getOrder(token, email);
             setDataOrder(responseOrder.data);
             setIsLoading(false);
@@ -74,12 +71,12 @@ export default function Home() {
     };
 
     if (isLoading) {
-        return (
-            <div className="loading-container">
-                <div className="loading-spinner"></div>
-                <div>Loading...</div>
-            </div>
-        );
+        // return (
+        //     <div className="loading-container">
+        //         <div className="loading-spinner"></div>
+        //         <div>Loading...</div>
+        //     </div>
+        // );
     }
 
     const handleItemClick = (index) => {
@@ -141,6 +138,10 @@ export default function Home() {
         setShowOrderConfirmation(false);
     };
 
+    const handleOpenProfile = () => {
+        navigate(`/profile`);
+    };
+
     return (
         <>
             <div className="header_1">
@@ -172,7 +173,7 @@ export default function Home() {
                     </div>
 
                     <div className="cart">
-                        <FontAwesomeIcon icon={faUser} className="search-icon" onClick={togglePopup} />
+                        <FontAwesomeIcon icon={faBuildingUser} className="search-icon" onClick={togglePopup} />
                         {showPopup && (
                             <div className="popup1" ref={popupRef}>
                                 <div className="popup-content1">
@@ -188,6 +189,9 @@ export default function Home() {
                                 </div>
                             </div>
                         )}
+                    </div>
+                    <div className="cart-image" onClick={handleOpenProfile}>
+                        <FontAwesomeIcon icon={faUser} className="search-icon" />
                     </div>
                 </div>
             </div>

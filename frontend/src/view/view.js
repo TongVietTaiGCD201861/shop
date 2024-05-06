@@ -15,10 +15,8 @@ export default function View({ onClose, id }) {
 
     const fetchProductDetail = async () => {
         try {
-            console.log(id);
             const response = await Shirt.getById(id, token);
             setData(response?.data);
-            console.log(response.data);
         } catch (error) {
             setError(error);
         } finally {

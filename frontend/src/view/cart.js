@@ -70,10 +70,6 @@ export default function Cart() {
         navigate('/product/purchase', { state: { newItem } });
     };
 
-
-    console.log(newItem);
-
-
     const updateCheckedTotal = (checkedItems) => {
         let total = 0;
         checkedItems.forEach(itemId => {
@@ -96,7 +92,6 @@ export default function Cart() {
     };
 
     const handleSearch = () => {
-        console.log(keySearch.length);
         dispatch(searchCartStart())
         dispatch(searchCart(keySearch))
         setSearch(true)
