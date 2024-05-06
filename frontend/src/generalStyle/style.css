@@ -1235,6 +1235,7 @@ footer {
 .product-list-management1 {
   width: 90%;
   margin-left: 5%;
+  margin-top: 2%;
 }
 
 .table-container1 {
@@ -1389,18 +1390,4 @@ footer {
   flex-direction: column;
   align-items: center;
   padding: 5%;
-}
-
-
-.order-confirmation {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 60%;
 }

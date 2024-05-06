@@ -4,7 +4,6 @@ import { PurchaseProduct } from "../apiServices";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link } from "react-router-dom";
-import OrderStatus from "./orderStatus";
 
 export default function OrderManagement() {
     const [selectedManagementId, setSelectedManagementId] = useState(null);
@@ -75,6 +74,15 @@ export default function OrderManagement() {
         );
     }
 
+    const statusMapping = {
+        1: 'Preparing goods',
+        2: 'In transit',
+        3: 'Delivered successfully',
+        4: 'Return',
+        5: 'Delivery failed'
+    };
+
+
     return (
         <>
             <div className="header_1">
@@ -124,7 +132,7 @@ export default function OrderManagement() {
                             <div className="table-cell cell-management">{management?.phoneNumber}</div>
                             <div className="table-cell cell-management">{management?.paymentMethod}</div>
                             <div className="table-cell cell-management">{management?.accountBuy}</div>
-                            <div className="table-cell cell-management"><OrderStatus status={order.status} /></div>
+                            <div className="table-cell cell-management">{statusMapping[management.status]}</div>
                             <div className="table-cell cell-management">
                                 <button className="button-edit" onClick={() => handleEditClick(management?.id, management?.status)}>Edit</button>
                             </div>

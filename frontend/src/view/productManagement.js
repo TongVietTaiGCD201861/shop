@@ -232,6 +232,7 @@ export default function ProductManagement() {
                             <div className="no-data-message">No data available</div>
                         )}
                     </div>
+
                 </div>
 
                 {showPopupDelete && (
