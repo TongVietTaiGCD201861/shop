@@ -44,10 +44,6 @@ namespace BackEnd.Controllers
             }
         }
 
-
-
-
-
         [HttpGet("{id:int}")]
         public async Task<Tuple<Shirt, IList<Image>>> GetByIdS([FromRoute] int id)
         {

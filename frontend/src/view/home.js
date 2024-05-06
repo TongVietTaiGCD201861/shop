@@ -3,26 +3,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shirt } from '../apiServices';
+import { PurchaseProduct, Shirt } from '../apiServices';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store/actions/user';
+import OrderStatus from './orderStatus';
 
 export default function Home() {
     const [selectedItem, setSelectedItem] = useState(null);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState(null);
+    const [dataOrder, setDataOrder] = useState(null);
     const [error, setError] = useState(null);
     const { token } = useSelector(state => state.user);
     const role = useSelector(state => state.user.role);
+    const email = useSelector(state => state.user.email);
     const [searchTerm, setSearchTerm] = useState("");
     const [showPopup, setShowPopup] = useState(false);
+    const [showPopupOrder, setShowPopupOrder] = useState(false);
     const popupRef = useRef(null);
     const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+    const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
         fetchData(searchTerm);
+        fetchDataOrder();
         const handleClickOutside = (event) => {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
                 setShowPopup(false);
@@ -45,6 +51,21 @@ export default function Home() {
         try {
             const response = await Shirt.get(token, searchItem);
             setData(response.data);
+            console.log(response.data);
+            setIsLoading(false);
+        } catch (error) {
+            setError(error);
+            setIsLoading(false);
+        }
+    };
+
+    const fetchDataOrder = async () => {
+        setIsLoading(true);
+        try {
+            console.log(token);
+            console.log(email);
+            const responseOrder = await PurchaseProduct.getOrder(token, email);
+            setDataOrder(responseOrder.data);
             setIsLoading(false);
         } catch (error) {
             setError(error);
@@ -111,6 +132,15 @@ export default function Home() {
         navigate(`/admin/product-management`);
     };
 
+    const handleOrderPlaced = () => {
+        setShowPopupOrder(false);
+        setShowOrderConfirmation(true);
+    };
+
+    const cancelOrder = () => {
+        setShowOrderConfirmation(false);
+    };
+
     return (
         <>
             <div className="header_1">
@@ -148,11 +178,11 @@ export default function Home() {
                                 <div className="popup-content1">
                                     <button onClick={handleLogout}>Log out</button>
                                     <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
+                                    <button onClick={handleOrderPlaced}>Order placed</button>
                                     {role === 1 && (
                                         <div>
                                             <button onClick={handleManagement}>Commodity management</button>
                                             <button onClick={handleProductManagement}>Product management</button>
-
                                         </div>
                                     )}
                                 </div>
@@ -166,6 +196,44 @@ export default function Home() {
                     <p>Are you sure you want to sign out?</p>
                     <button onClick={confirmLogout}>Agree</button>
                     <button onClick={cancelLogout}>Cancel</button>
+                </div>
+            )}
+
+            {showOrderConfirmation && (
+                <div className="order-confirmation">
+                    <div style={{ borderBottom: "1px solid #ccc", paddingBottom: '1%', display: 'flex' }}>
+                        <div style={{ width: '95%' }}>My order</div>
+                        <div onClick={cancelOrder}
+                            style={{
+                                cursor: 'pointer',
+                                border: '1px solid #ccc',
+                                padding: '5px',
+                                borderRadius: '10px'
+                            }}>X</div>
+                    </div>
+
+                    <div className="product-list-management1" style={{ border: 'none' }}>
+                        <div className="table-container1" style={{ border: 'none', overflow: 'auto', maxHeight: '500px' }}>
+                            <div className="table-row1 header-management1" style={{ backgroundColor: "#f2f2f2", fontWeight: "bold", border: 'none' }}>
+                                <div className="table-cell1 cell-management1" style={{ width: "5%", textAlign: 'center', border: 'none' }}>STT</div>
+                                <div className="table-cell1 cell-management1" style={{ width: "65%", border: 'none' }}>Name</div>
+                                <div className="table-cell1 cell-management1" style={{ width: "10%", textAlign: 'center', border: 'none' }}>Price</div>
+                                <div className="table-cell1 cell-management1" style={{ width: "20%", textAlign: 'center', border: 'none' }}>Order status</div>
+                            </div>
+                            {dataOrder && dataOrder?.length > 0 ? (
+                                dataOrder?.map((order, index) => (
+                                    <div className="table-row1 header-management2" key={index}>
+                                        <div className="table-cell1 cell-management1" style={{ width: "5%", textAlign: 'center', border: 'none' }}>{index + 1}</div>
+                                        <div className="table-cell1 cell-management1" style={{ width: "65%", border: 'none' }}>{order.name}</div>
+                                        <div className="table-cell1 cell-management1" style={{ width: "10%", textAlign: 'center', border: 'none' }}>{order.total}</div>
+                                        <div className="table-cell1 cell-management1" style={{ width: "20%", textAlign: 'center', border: 'none' }}> <OrderStatus status={order.status} /></div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="no-data-message">No data available</div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             )}
             <div className="home" id="home">

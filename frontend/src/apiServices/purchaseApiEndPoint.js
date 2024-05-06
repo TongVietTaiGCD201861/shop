@@ -10,12 +10,22 @@ export const PurchaseProduct = {
   put,
   getById,
   _delete,
-  updateStatus
+  updateStatus,
+  getOrder
 };
 
 function get(token) {
   return axios.get(`${BASEURL}/Purchases`, {
     headers: { Authorization: "Bearer " + token },
+  });
+}
+
+function getOrder(token, searchOrder) {
+  return axios.get(`${BASEURL}/Purchases/search`, {
+    params: {
+      searchOrder: searchOrder
+    },
+    headers: { Authorization: "Bearer " + token }
   });
 }
 

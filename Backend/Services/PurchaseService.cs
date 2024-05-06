@@ -57,5 +57,13 @@ namespace BackEnd.Services
             }
         }
 
+        public IList<Purchase> GetOrder(string searchOrder)
+        {
+            var orders = _db.Purchases
+                             .Where(p => p.AccountBuy.Contains(searchOrder))
+                             .ToList();
+            return orders;
+        }
+
     }
 }

@@ -23,35 +23,35 @@ namespace BackEnd.Controllers
             _mapper = mapper;
         }
 
-            [HttpPost]
-            public IActionResult Create(PurchaseDto input)
+        [HttpPost]
+        public IActionResult Create(PurchaseDto input)
+        {
+            if (input == null)
             {
-                if (input == null)
-                {
-                    return BadRequest("PurchaseDto input is null");
-                }
-                
-                var purchase = new Purchase
-                {
-                    Name = input.Name,
-                    Size = input.Size,
-                    Price = input.Price,
-                    Color = input.Color,
-                    Quantity = input.Quantity,
-                    Total = input.Total,
-                    UserName = input.UserName,
-                    Address = input.Address,
-                    PhoneNumber = input.PhoneNumber,
-                    PaymentMethod = input.PaymentMethod,
-                    AccountBuy = input.AccountBuy,
-                    Status = 1,
-                };
-
-
-            _purchaseService.Create(purchase);
-
-                return Ok(purchase);
+                return BadRequest("PurchaseDto input is null");
             }
+            
+            var purchase = new Purchase
+            {
+                Name = input.Name,
+                Size = input.Size,
+                Price = input.Price,
+                Color = input.Color,
+                Quantity = input.Quantity,
+                Total = input.Total,
+                UserName = input.UserName,
+                Address = input.Address,
+                PhoneNumber = input.PhoneNumber,
+                PaymentMethod = input.PaymentMethod,
+                AccountBuy = input.AccountBuy,
+                Status = 1,
+            };
+
+
+        _purchaseService.Create(purchase);
+
+            return Ok(purchase);
+        }
 
         [HttpGet]
         [Authorize(Role.Admin)]
@@ -73,6 +73,13 @@ namespace BackEnd.Controllers
             {
                 return NotFound(); 
             }
+        }
+
+        [HttpGet("search")]
+        public async Task<IList<Purchase>> GetOrder([FromQuery] string searchOrder)
+        {
+                return _purchaseService.GetOrder(searchOrder);
+           
         }
     }
 }
