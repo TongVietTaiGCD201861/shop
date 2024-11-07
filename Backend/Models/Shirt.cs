@@ -9,9 +9,11 @@ namespace BackEnd.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Brand { get; set; }
+        public int BrandId { get; set; }
         [Required]
         public DateTime CreatedDate { get; set; }
+        [Required]
+        public DateTime UpdateDate { get; set; }
         [Required]
         public bool Sex { get; set; }
         [Required]

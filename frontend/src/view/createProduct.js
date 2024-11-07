@@ -55,12 +55,12 @@ export default function CreateProduct({ onClose, id, action }) {
     };
 
     if (isLoading) {
-        return (
-            <div className="loading-container">
-                <div className="loading-spinner"></div>
-                <div>Loading...</div>
-            </div>
-        );
+        // return (
+        //     <div className="loading-container">
+        //         <div className="loading-spinner"></div>
+        //         <div>Loading...</div>
+        //     </div>
+        // );
     }
 
     const handleDelete = () => {
@@ -112,7 +112,7 @@ export default function CreateProduct({ onClose, id, action }) {
         const createProduct = {
             Id: parseInt(id),
             Name: name,
-            Brand: "Shirts",
+            BrandId: 1,
             createdDate: createDate,
             Sex: true,
             Price: parseInt(price),
@@ -233,7 +233,7 @@ export default function CreateProduct({ onClose, id, action }) {
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 {!imageUrl && (
                                     <div className="create-image" style={{ border: '2px solid #ccc', borderRadius: '10px', padding: '10px', cursor: 'pointer' }} onClick={() => document.getElementById('fileInput').click()}>
-                                        <div class="center">
+                                        <div className="center">
                                             <div>
                                                 <FontAwesomeIcon icon={faCloudUpload} />
                                             </div>

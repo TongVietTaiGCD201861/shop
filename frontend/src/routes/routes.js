@@ -15,6 +15,9 @@ import Purchase from "../view/purchase";
 import OrderManagement from "../view/orderManagement";
 import ProductManagement from "../view/productManagement";
 import Profile from "../view/profile";
+import Paypal from "../components/paypal";
+import SearchResults from "../view/search";
+import Contact from "../view/contact";
 
 export const router = createBrowserRouter([
   {
@@ -29,13 +32,16 @@ export const router = createBrowserRouter([
       { path: "reset-password", element: <ResetPassword /> },
       { path: "forgot-password", element: <ForgotPassword /> },
       { path: "reset-password/forgot-password", element: <ForgotPassword /> },
-      { path: "product", element: <Home /> },
+      { path: "home", element: <Home /> },
       { path: "product/cart", element: <Cart /> },
       { path: "product/purchase", element: <Purchase /> },
       { path: "product/:id", element: <ProductDetail /> },
       { path: "admin/order-management", element: <OrderManagement /> },
       { path: "admin/product-management", element: <ProductManagement /> },
       { path: "profile", element: <Profile /> },
+      { path: "paypal", element: <Paypal /> },
+      { path: "product", element: <SearchResults /> },
+      { path: "contact", element: <Contact /> },
       {
         element: <RequireAuth />,
         children: [

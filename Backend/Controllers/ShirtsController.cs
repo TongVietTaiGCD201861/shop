@@ -2,18 +2,12 @@
 using BackEnd.Attributes;
 using BackEnd.Dtos;
 using BackEnd.Models;
-using BackEnd.Services;
 using BackEnd.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using Org.BouncyCastle.Utilities;
-using static System.Net.Mime.MediaTypeNames;
 using Image = BackEnd.Models.Image;
 
 namespace BackEnd.Controllers
 {
-    
     [ApiController]
     [Route("api/[controller]")]
     public class ShirtsController : ControllerBase
@@ -23,7 +17,11 @@ namespace BackEnd.Controllers
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
 
-        public ShirtsController(IShirtService shirtService, IMapper mapper, IEmailService emailService, IUserService userService)
+        public ShirtsController(
+            IShirtService shirtService,
+            IMapper mapper, 
+            IEmailService emailService,
+            IUserService userService)
         {
             _shirtService = shirtService;
             _mapper = mapper;
@@ -34,18 +32,15 @@ namespace BackEnd.Controllers
         [HttpGet("search")]
         public async Task<IList<Tuple<Shirt, IList<Image>>>> GetAll([FromQuery] SearchDto searchDto)
         {
-            if (string.IsNullOrEmpty(searchDto?.SearchItem))
-            {
-                return _shirtService.GetAllShirtsAndImages(null);
-            }
-            else
-            {
-                return _shirtService.GetAllShirtsAndImages(searchDto.SearchItem);
-            }
+            return _shirtService.GetAllShirtsAndImages(
+                searchDto.SearchItem,
+                searchDto.BrandId,
+                searchDto.MinPrice, 
+                searchDto.MaxPrice);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<Tuple<Shirt, IList<Image>>> GetByIdS([FromRoute] int id)
+        public async Task<Tuple<Shirt, IList<Image>>> GetById([FromRoute] int id)
         {
            
             try
@@ -76,7 +71,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost]
-        [Authorize(Role.Admin)]
+        //[Authorize(Role.Admin)]
         public IActionResult Create(ShirtUpsertDto input)
         {
             var shirt = _mapper.Map<Shirt>(input);
@@ -117,6 +112,18 @@ namespace BackEnd.Controllers
 
         }
 
+
+        [HttpGet("getCountCart/{userId:int}")]
+        public async Task<int> getCountCart([FromRoute] int userId)
+        {
+            try
+            {
+                return _shirtService.getCountCart(userId);
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 }

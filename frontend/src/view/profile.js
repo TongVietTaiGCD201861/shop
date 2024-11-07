@@ -80,7 +80,7 @@ export default function Profile() {
                 </div>
             </div>
             <div className="breadcrumb">
-                <Link to="/product" className="breadcrumb-item-hover">Product</Link>
+                <Link to="/home" className="breadcrumb-item-hover">Product</Link>
                 <span className="breadcrumb-divider">/</span>
                 <span className="breadcrumb-item">My profile</span>
             </div>

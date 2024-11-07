@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASEURL = "http://localhost:5000/api";
-// const BASEURL = "https://localhost:7172/api";
+// const BASEURL = "http://localhost:5000/api";
+const BASEURL = "https://localhost:7172/api";
 
 export const User = {
   login,
@@ -12,7 +12,14 @@ export const User = {
   resetPassword,
   loginGoogle,
   getById,
+  getAllUser
 };
+
+function getAllUser(token) {
+  return axios.get(`${BASEURL}/Users`, {
+    headers: { Authorization: "Bearer " + token },
+  });
+}
 
 function getById(id, token) {
   return axios.get(`${BASEURL}/Users/${id}`, {

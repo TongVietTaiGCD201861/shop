@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const BASEURL = "http://localhost:5000/api";
-const BASEURLIMAGE = "http://localhost:5000/api/images/";
-// const BASEURL = "https://localhost:7172/api";
-// const BASEURLIMAGE = "https://localhost:7172/api/images/";
+// const BASEURL = "http://localhost:5000/api";
+// const BASEURLIMAGE = "http://localhost:5000/api/images/";
+const BASEURL = "https://localhost:7172/api";
+const BASEURLIMAGE = "https://localhost:7172/api/images/";
 
 
 export const Shirt = {
@@ -13,14 +13,13 @@ export const Shirt = {
   getById,
   _delete,
   BASEURLIMAGE,
-  uploadFile
+  uploadFile,
+  getCountCart
 };
 
-export function get(token, searchItem) {
+export function get(token, params) {
   return axios.get(`${BASEURL}/Shirts/search`, {
-    params: {
-      SearchItem: searchItem
-    },
+    params: params,
     headers: { Authorization: "Bearer " + token }
   });
 }
@@ -52,6 +51,12 @@ function put(id, data, token) {
 
 function _delete(id, token) {
   return axios.delete(`${BASEURL}/Shirts/${id}`, {
+    headers: { Authorization: "Bearer " + token },
+  });
+}
+
+function getCountCart(id, token) {
+  return axios.get(`${BASEURL}/Shirts/getCountCart/${id}`, {
     headers: { Authorization: "Bearer " + token },
   });
 }

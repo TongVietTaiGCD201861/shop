@@ -1,82 +1,49 @@
-import { faPlus, faSearch, faShoppingBasket, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
-import { AddToCart } from '../store/actions/cart';
+import { Shirt } from '../apiServices';
+import FeedbackDetail from './feedback';
+import Footer from './footer';
+import Header from './header';
 import Instructions from "./instructions";
-import { Feedback, PurchaseProduct, Shirt } from '../apiServices';
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { logout } from '../store/actions/user';
-import OrderStatus from './orderStatus';
+import { Cart } from '../apiServices/cart';
 
 const ProductDetail = () => {
 
     const { id } = useParams();
-    const [selectedItem, setSelectedItem] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [isPopupVisible, setPopupVisible] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [selectedImagePath, setSelectedImagePath] = useState(null);
     const [selectedSize, setSelectedSize] = useState('27');
     const navigate = useNavigate();
-    const [selectedColor, setSelectedColor] = useState(null);
-    const [cart, setCart] = useState([]);
+    const [selectedColor, setSelectedColor] = useState("Green");
     const [data, setData] = useState(null);
-    const [dataFeedback, setDataFeedback] = useState(null);
     const { token } = useSelector(state => state.user);
-    const email = useSelector(state => state.user.email);
-    const [showPopup, setShowPopup] = useState(false);
-    const popupRef = useRef(null);
-    const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
-    const role = useSelector(state => state.user.role);
-    const user = useSelector(state => state.user.firstName);
-    const [inputValue, setInputValue] = useState('');
-    const [showPopupOrder, setShowPopupOrder] = useState(false);
-    const [successMessage, setSuccessMessage] = useState('');
-    const [error, setError] = useState(null);
-    const [dataOrder, setDataOrder] = useState(null);
-    const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
+    const [feedbackCount, setFeedbackCount] = useState(0);
+    const userId = useSelector(state => state.user.id);
+
 
     useEffect(() => {
         fetchProductDetail();
-        fetchDataOrder();
     }, [id]);
 
-    const fetchProduct = async () => {
-        try {
-            const response = await Feedback.get(parseInt(id), token);
-            // setDataFeedback(response?.dataFeedback);
-            setDataFeedback(response?.data);
-        } catch (error) {
-            console.error('Error fetching product detail:', error);
-            setIsLoading(isLoading);
-        }
+    const updateFeedbackCount = (count) => {
+        setFeedbackCount(count);
     };
 
-    const fetchDataOrder = async () => {
-        try {
-            const responseOrder = await PurchaseProduct.getOrder(token, email);
-            setDataOrder(responseOrder.data);
-            setIsLoading(false);
-        } catch (error) {
-            setError(error);
-            setIsLoading(false);
-        }
-    };
-    const commentCount = dataFeedback ? dataFeedback.length : 0;
     const fetchProductDetail = async () => {
         try {
+            setIsLoading(true);
             const response = await Shirt.getById(id, token);
             setData(response?.data);
             setSelectedImagePath(response?.data?.item2[0]?.imgPath);
-            setIsLoading(!isLoading);
-            fetchProduct();
+            setIsLoading(false);
         } catch (error) {
             console.error('Error fetching product detail:', error);
-            setIsLoading(!isLoading);
+            setIsLoading(false);
         }
     };
 
@@ -103,21 +70,8 @@ const ProductDetail = () => {
         );
     }
 
-    const handleCart = () => {
-        navigate(`/product/cart`);
-    };
-
     const handleSizeChange = (e) => {
         setSelectedSize(e.target.value);
-    };
-
-    const handleItemClick = (index) => {
-        setSelectedItem(index);
-        if (index === 0) {
-            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-        } else if (index === 1) {
-            document.getElementById('product').scrollIntoView({ behavior: 'smooth' });
-        }
     };
 
     const handleImageClick = (path) => {
@@ -127,182 +81,59 @@ const ProductDetail = () => {
     const handleColorChange = (color) => {
         setSelectedColor(color);
     };
-    const dispatch = useDispatch()
 
     const handleAddToCart = () => {
-        if (!selectedColor) {
-            alert('Please select color before adding to cart.');
-            return;
-        }
-        const newItem = {
-            cartId: uuidv4(),
-            id: id,
-            name: data?.item1?.name,
-            color: selectedColor,
-            price: data?.item1?.price,
-            size: selectedSize,
-            quantity: quantity,
-            total: quantity * data?.item1?.price
-        };
-        dispatch(AddToCart(newItem))
-        navigate(`/product/cart`);
+        createCart();
     };
 
     const handlePurchase = () => {
-        if (!selectedColor) {
-            alert('Please select color before adding to cart.');
-            return;
-        }
-        const newItem = {
-            id: id,
-            name: data?.item1?.name,
-            color: selectedColor,
-            price: data?.item1?.price,
-            size: selectedSize,
-            quantity: quantity,
-            total: quantity * data?.item1?.price
-        };
-
         navigate('/product/purchase', { state: { newItem } });
     };
 
-    const togglePopup2 = () => {
-        setShowPopup(!showPopup);
-    };
-
-    const handleLogout = () => {
-        setShowPopup(false);
-        setShowLogoutConfirmation(true);
-    };
-
-    const confirmLogout = () => {
-        navigate(`/login`);
-        dispatch(logout());
-
-    };
-
-    const cancelLogout = () => {
-        setShowLogoutConfirmation(false);
-    };
-
-    const handleManagement = () => {
-        navigate(`/admin/order-management`);
-    };
-
-    const handleChange = (event) => {
-        setInputValue(event.target.value);
-    };
-
-    const handleSubmit = () => {
-        const dataCreate = {
-            IdShirt: parseInt(id),
-            UserName: user,
-            Description: inputValue
-        };
-        fetchCreate(dataCreate);
-    };
-
-    const fetchCreate = async (dataCreate) => {
+    const createCart = async () => {
         try {
-            await Feedback.post(dataCreate, token);
-            setSuccessMessage('Feedback sent successfully!');
-            setTimeout(() => {
-                setSuccessMessage('');
-            }, 500);
-            setInputValue('');
-            fetchProduct();
+            const item = {
+                ShirtId: parseInt(id),
+                Quantity: parseInt(quantity),
+                Color: selectedColor
+            };
+            setIsLoading(true);
+            await Cart.addItemToCart(token, userId, item);
+            setIsLoading(false);
+            navigate(`/product/cart`);
         } catch (error) {
+            console.error('Error fetching product detail:', error);
+            setIsLoading(false);
         }
     };
 
-    const handleProductManagement = () => {
-        navigate(`/admin/product-management`);
-    };
-
-    const handleOrderPlaced = () => {
-        setShowPopupOrder(false);
-        setShowOrderConfirmation(true);
-    };
-
-    const cancelOrder = () => {
-        setShowOrderConfirmation(false);
-    };  
-
-    const handleOpenProfile = () => {
-        navigate(`/profile`);
-    };
-
     return (
-        <>
-            <div className="header_1">
-                <div className="header">
-                    <div className="logo-container" onClick={() => window.location.href = "http://localhost:3000/product"}>
-                        <img className="logo" src="https://img.freepik.com/premium-vector/tshirt-logo-clothing-logo-apparel-store-icon-fashion-logo-design-tshirt-icon-template_657888-112.jpg" alt="Shirt Store Logo" />
-                        <span className="store-name">Shirt Store</span>
-                    </div>
-                    <div className="menu">
-                        <ul>
-                            <li className={selectedItem === 0 ? 'selected' : ''} onClick={() => handleItemClick(0)}><a href="http://localhost:3000/product">Home</a></li>
-                            <li className={selectedItem === 1 ? 'selected' : ''} onClick={() => handleItemClick(1)}><a href="http://localhost:3000/product">Product</a></li>
-                        </ul>
-                    </div>
-
-                    <div className="cart">
-                        <FontAwesomeIcon icon={faShoppingCart} className="search-icon" onClick={() => handleCart()} />
-                    </div>
-
-                    <div className="cart">
-                        <FontAwesomeIcon icon={faUser} className="search-icon" onClick={togglePopup2} />
-                        {showPopup && (
-                            <div className="popup1" ref={popupRef}>
-                                <div className="popup-content1">
-                                    <button onClick={handleLogout}>Log out</button>
-                                    <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
-                                    <button onClick={handleOrderPlaced}>Order placed</button>
-                                    {role === 1 && (
-                                        <div>
-                                            <button onClick={handleManagement}>Commodity management</button>
-                                            <button onClick={handleProductManagement}>Product management</button>
-
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    <div className="cart-image" onClick={handleOpenProfile}>
-                        <FontAwesomeIcon icon={faUser} className="search-icon" />
-                    </div>
-                </div>
-            </div>
-            {showLogoutConfirmation && (
-                <div className="logout-confirmation">
-                    <p>Are you sure you want to sign out?</p>
-                    <button onClick={confirmLogout}>Agree</button>
-                    <button onClick={cancelLogout}>Cancel</button>
-                </div>
-            )}
-
-            <div className="breadcrumb">
+        <div style={{ backgroundColor: 'rgba(208,1,27,.08)' }}>
+            <Header></Header>
+            <div className="breadcrumb" style={{ width: '70%', marginLeft: '15%' }}>
                 <Link to="/product" className="breadcrumb-item-hover">Product</Link>
                 <span className="breadcrumb-divider">/</span>
                 <span className="breadcrumb-item">{data?.item1?.name}</span>
             </div>
 
-            <div style={{ display: 'flex', marginLeft: '5%', padding: '0% 5%' }}>
-                <div style={{ width: "10%", height: '69vh', overflowY: 'auto', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', marginLeft: '15%', width: '70%', backgroundColor: 'white', padding: '1%' }} >
+                <div style={{ width: "10%", height: '50vh', overflowY: 'auto', cursor: 'pointer' }}>
                     {Array.isArray(data?.item2) && data?.item2.map((item, index) => (
                         <img
                             key={index}
                             className="product-detail-view-total"
-                            src={Shirt.BASEURLIMAGE + item?.imgPath}
+                            // src={Shirt.BASEURLIMAGE + item?.imgPath}
+                            src={require('../image/home/462287097_1101780851957342_5037346083786431034_n.jpg')}
                             alt={`Image ${index + 1}`}
                             onClick={() => handleImageClick(item?.imgPath)}
                         />
                     ))}
                 </div>
-                <div style={{ width: "35%" }}>
-                    <img className="product-detail-image" src={Shirt.BASEURLIMAGE + selectedImagePath} alt="Shirt Store Logo" />
+                <div style={{ width: "30%" }}>
+                    <img className="product-detail-image"
+                        // src={Shirt.BASEURLIMAGE + selectedImagePath}
+                        src={require('../image/home/462287097_1101780851957342_5037346083786431034_n.jpg')}
+                        alt="Shirt Store Logo" />
                 </div>
                 <div style={{ width: "55%" }}>
                     <div className="title-image">{data?.item1?.name.toLowerCase()}</div>
@@ -316,7 +147,7 @@ const ProductDetail = () => {
                             <span style={{ color: '#fadb14', marginRight: '5px' }}>★</span>
                             <span style={{ color: '#fadb14', marginRight: '5px' }}>★</span>
                         </div>
-                        <span style={{ marginRight: '10px', borderRight: '1px solid #ccc', paddingRight: '5px' }}><b>Feedback:</b> 500</span>
+                        <span style={{ marginRight: '10px', borderRight: '1px solid #ccc', paddingRight: '5px' }}><b>Feedback:</b> {feedbackCount}</span>
                         <span style={{ marginRight: '10px' }}><b>Sold:</b> 5000</span>
                     </div>
 
@@ -407,44 +238,6 @@ const ProductDetail = () => {
 
                     </div>
 
-                    {showOrderConfirmation && (
-                <div className="order-confirmation">
-                    <div style={{ borderBottom: "1px solid #ccc", paddingBottom: '1%', display: 'flex' }}>
-                        <div style={{ width: '95%' }}>My order</div>
-                        <div onClick={cancelOrder}
-                            style={{
-                                cursor: 'pointer',
-                                border: '1px solid #ccc',
-                                padding: '5px',
-                                borderRadius: '10px'
-                            }}>X</div>
-                    </div>
-
-                    <div className="product-list-management1" style={{ border: 'none' }}>
-                        <div className="table-container1" style={{ border: 'none', overflow: 'auto', maxHeight: '500px' }}>
-                            <div className="table-row1 header-management1" style={{ backgroundColor: "#f2f2f2", fontWeight: "bold", border: 'none' }}>
-                                <div className="table-cell1 cell-management1" style={{ width: "5%", textAlign: 'center', border: 'none' }}>STT</div>
-                                <div className="table-cell1 cell-management1" style={{ width: "65%", border: 'none' }}>Name</div>
-                                <div className="table-cell1 cell-management1" style={{ width: "10%", textAlign: 'center', border: 'none' }}>Price</div>
-                                <div className="table-cell1 cell-management1" style={{ width: "20%", textAlign: 'center', border: 'none' }}>Order status</div>
-                            </div>
-                            {dataOrder && dataOrder?.length > 0 ? (
-                                dataOrder?.map((order, index) => (
-                                    <div className="table-row1 header-management2" key={index}>
-                                        <div className="table-cell1 cell-management1" style={{ width: "5%", textAlign: 'center', border: 'none' }}>{index + 1}</div>
-                                        <div className="table-cell1 cell-management1" style={{ width: "65%", border: 'none' }}>{order.name}</div>
-                                        <div className="table-cell1 cell-management1" style={{ width: "10%", textAlign: 'center', border: 'none' }}>{order.total}</div>
-                                        <div className="table-cell1 cell-management1" style={{ width: "20%", textAlign: 'center', border: 'none' }}><OrderStatus status={order.status} /></div>
-                                    </div>
-                                ))
-                            ) : (
-                                <div className="no-data-message">No data available</div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
-
                     <div style={{ paddingTop: '4%', display: 'flex', paddingBottom: '5%' }}>
                         <div style={{ width: '50%', padding: ' 0 2.5%' }} onClick={handlePurchase}>
                             <button className='btn-signup'><FontAwesomeIcon icon={faShoppingBasket} /> Purchase</button>
@@ -460,69 +253,9 @@ const ProductDetail = () => {
                 </div>
             </div>
             <div style={{ borderBottom: '1px solid #ccc', paddingTop: '2%' }}></div>
-            <div className='feedback'>
-                <div style={{ width: '80%', marginLeft: '10%' }}>
-                    <div className="box-container" >
-                        <h3>Feedback</h3>
-
-                        <div className="container-product" style={{ width: "100%" }}>
-                            <textarea type="text" className="input-product" placeholder="Enter here......" value={inputValue} onChange={handleChange}></textarea>
-
-                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: '1%' }}>
-
-                                <button className="send-button" onClick={handleSubmit}>Send feedback</button>
-                                {successMessage && <div className="success-message-send">{successMessage}</div>}
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className="box-container" style={{ marginTop: "3%" }}>
-                        <h3>Product reviews ({commentCount})</h3>
-
-                        <div>
-                            {dataFeedback?.map((comment, index) => (
-                                <div className="comment" key={index}>
-                                    <div className="user-info">
-                                        <div className="user-avatar"></div>
-                                        <div style={{ width: "30%" }}>
-                                            <div>
-                                                <span className="user-name">{comment?.userName}</span>
-                                            </div>
-                                            <div className="rating">
-                                                {/* <span className="stars">★★★★☆</span> */}
-                                                <span className="date">{comment?.createDate}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="comment-content">
-                                        <div className="description">{comment?.description}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-            <footer>
-                <div className="footer-content1">
-                    <h3>code opacity</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo iste corrupti doloribus odio sed!</p>
-                    <ul className="socials1">
-                        <li><a href="#"><FontAwesomeIcon icon={faFacebook} /></a></li>
-                        <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>
-                        <li><a href="#"><FontAwesomeIcon icon={faInstagram} /></a></li>
-                    </ul>
-                </div>
-                <div className="footer-bottom1">
-                    <p>copyright &copy;2024 codeOpacity. designed by <span>TaiTV</span></p>
-                </div>
-            </footer>
-        </>
+            <FeedbackDetail id={id} updateFeedbackCount={updateFeedbackCount}></FeedbackDetail>
+            <Footer></Footer>
+        </div>
     );
 };
 

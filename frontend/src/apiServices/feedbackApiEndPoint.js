@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASEURL = "http://localhost:5000/api";
-// const BASEURL = "https://localhost:7172/api";
+// const BASEURL = "http://localhost:5000/api";
+const BASEURL = "https://localhost:7172/api";
 
 
 export const Feedback = {

@@ -89,7 +89,7 @@ export default function OrderManagement() {
                 </div>
             </div>
             <div className="breadcrumb">
-                <Link to="/product" className="breadcrumb-item-hover">Product</Link>
+                <Link to="/home" className="breadcrumb-item-hover">Product</Link>
                 <span className="breadcrumb-divider">/</span>
                 <span className="breadcrumb-item">Order management</span>
             </div>

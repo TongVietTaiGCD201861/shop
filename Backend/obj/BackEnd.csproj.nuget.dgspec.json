@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\shop\\Backend\\BackEnd.csproj": {}
+    "C:\\Users\\Admin\\Downloads\\shop\\Backend\\BackEnd.csproj": {}
   },
   "projects": {
-    "D:\\shop\\Backend\\BackEnd.csproj": {
+    "C:\\Users\\Admin\\Downloads\\shop\\Backend\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\shop\\Backend\\BackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\BackEnd.csproj",
         "projectName": "BackEnd",
-        "projectPath": "D:\\shop\\Backend\\BackEnd.csproj",
-        "packagesPath": "C:\\Users\\vietnq\\.nuget\\packages\\",
-        "outputPath": "D:\\shop\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\BackEnd.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vietnq\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -64,6 +60,14 @@
             "MailKit": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -117,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

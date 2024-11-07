@@ -1,9 +1,8 @@
 ﻿using BackEnd.Data;
 using BackEnd.Models;
 using BackEnd.Services.IServices;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BackEnd.Services
 {
@@ -21,7 +20,7 @@ namespace BackEnd.Services
             try
             {
                 _db.Shirts.Add(input);
-                _db.SaveChanges();
+                _db.SaveChangesAsync();
                 return input;
             }catch (Exception e)
             {
@@ -30,7 +29,7 @@ namespace BackEnd.Services
             }
         }
 
-        public IList<Tuple<Shirt, IList<Image>>> GetAllShirtsAndImages(string searchTerm)
+        public IList<Tuple<Shirt, IList<Image>>> GetAllShirtsAndImages(string searchTerm, int? brandId, int? minPrice, int? maxPrice)
         {
             var result = (from s in _db.Shirts
                           join i in _db.Images on s.Id equals i.IdShirt into si
@@ -41,18 +40,38 @@ namespace BackEnd.Services
                               Image = img
                           }).ToList();
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
+            if (!string.IsNullOrWhiteSpace(searchTerm) || brandId.HasValue || minPrice.HasValue || maxPrice.HasValue)
             {
-                var filteredResult = result.Where(x => x.Shirt.Name.Contains(searchTerm)).ToList();
+                var filteredResult = result;
 
-                var groupedResultFiltered = filteredResult.GroupBy(x => x.Shirt.Id).Select(group =>
+                if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    filteredResult = filteredResult.Where(x => x.Shirt.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+                }
+
+                if (brandId.HasValue && brandId != 0)
+                {
+                    filteredResult = filteredResult.Where(x => x.Shirt.BrandId == brandId.Value).ToList();
+                }
+
+                if (minPrice.HasValue)
+                {
+                    filteredResult = filteredResult.Where(x => x.Shirt.Price >= minPrice.Value).ToList();
+                }
+
+                if (maxPrice.HasValue)
+                {
+                    filteredResult = filteredResult.Where(x => x.Shirt.Price <= maxPrice.Value).ToList();
+                }
+
+                var groupedResult = filteredResult.GroupBy(x => x.Shirt.Id).Select(group =>
                 {
                     var shirt = group.First().Shirt;
                     var images = group.Where(x => x.Image != null).Select(x => x.Image).ToList();
                     return new Tuple<Shirt, IList<Image>>(shirt, images);
                 }).ToList();
 
-                return groupedResultFiltered;
+                return groupedResult;
             }
             else
             {
@@ -66,9 +85,6 @@ namespace BackEnd.Services
                 return groupedResultAll;
             }
         }
-
-
-
 
         public Tuple<Shirt, IList<Image>> GetById(int id)
         {
@@ -99,7 +115,7 @@ namespace BackEnd.Services
 
                     existingShirt.Id = input.Id;
                     existingShirt.Name = input.Name;
-                    existingShirt.Brand = input.Brand;
+                    existingShirt.BrandId = input.BrandId;
                     existingShirt.CreatedDate = input.CreatedDate;
                     existingShirt.Sex = input.Sex;
                     existingShirt.Price = input.Price;
@@ -181,6 +197,24 @@ namespace BackEnd.Services
             await _db.SaveChangesAsync();
 
             return imageUrl;
+        }
+
+        public int getCountCart(int userId)
+        {
+            try
+            {
+            var count = _db.Carts.Where(p => p.UserId == userId);
+                if (count == null)
+                {
+                    return 0;
+                }
+                return count.Count();
+
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Cart for user with ID {userId} not found.");
+            }
         }
     }
 }

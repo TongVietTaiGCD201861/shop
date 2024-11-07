@@ -50,7 +50,7 @@ const Login = () => {
     })
       .then((res) => {
         dispatch(login(res.data));
-        navigation("/product");
+        navigation("/home");
       })
       .catch((err) => {
         console.log(err);

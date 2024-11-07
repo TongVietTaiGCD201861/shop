@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using BackEnd;
 using BackEnd.Data;
 using BackEnd.Middleware;
@@ -6,6 +6,8 @@ using BackEnd.Services;
 using BackEnd.Services.IServices;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.FileProviders;
+using BackEnd.Hubs;
+using BackEnd.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,9 @@ builder.Services.AddScoped<IFeedbackService, FeedbackService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IImageServices, ImageServices>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -73,14 +78,17 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .AllowAnyOrigin()
+                .WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowCredentials();
         });
+    
 });
 
 
-
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<ShareDb>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -98,11 +106,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/api/images"
 });
 
-// global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
-
 app.UseMiddleware<JwtMiddleware>();
-
 app.MapControllers();
-
+app.MapHub<ChatHub>("/chatHub");
 app.Run();
