@@ -36,20 +36,6 @@ public class CartsController : ControllerBase
         }
     }
 
-    [HttpGet("getAll")]
-    public IActionResult GetAllCarts()
-    {
-        try
-        {
-            var carts = _cartService.GetAllCarts();
-            return Ok(carts);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-    }
-
     [HttpPost("{userId:int}/items")]
     public IActionResult AddItemToCart([FromRoute] int userId, [FromBody] AddItemToCartRequest request)
     {
@@ -64,12 +50,12 @@ public class CartsController : ControllerBase
         }
     }
 
-    [HttpPost("delete/{userId:int}/items")]
-    public IActionResult RemoveItemFromCart([FromRoute] int userId, [FromBody] AddItemToCartRequest request)
+    [HttpDelete("delete/{userId:int}/items/{shirtId:int}")]
+    public IActionResult RemoveItemFromCart([FromRoute] int userId, [FromRoute] int shirtId)
     {
         try
         {
-            _cartService.RemoveItemFromCart(userId, request.ShirtId, request.Quantity);
+            _cartService.RemoveItemFromCart(userId, shirtId);
             return Ok();
         }
         catch (ArgumentException ex)
@@ -80,5 +66,18 @@ public class CartsController : ControllerBase
         {
             return StatusCode(500, ex.Message);
         }
+    }
+
+    [HttpPut("update-quantity/{cartItemId:int}/{newQuantity:int}")]
+    public async Task<IActionResult> UpdateQuantity([FromRoute] int cartItemId, [FromRoute] int newQuantity)
+    {
+        var result = await _cartService.UpdateCartItemQuantityAsync(cartItemId, newQuantity);
+
+        if (!result)
+        {
+            return NotFound("Cart item not found.");
+        }
+
+        return Ok("Quantity updated successfully.");
     }
 }

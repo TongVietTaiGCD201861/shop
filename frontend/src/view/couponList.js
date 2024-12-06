@@ -61,14 +61,24 @@ const CouponList = ({ dataDiscounts }) => {
                             <div className="item" key={indexDis}>
                                 <div className="wd-coupon d-flex">
                                     <div className="wd-coupon-left d-flex">
-                                        <strong>{dataDis?.code}</strong>
+                                        {dataDis?.code
+                                            ? dataDis.code.length > 6
+                                                ? `${dataDis.code.substring(0, 6)}...`
+                                                : dataDis.code
+                                            : ''}
                                     </div>
                                     <div className="wd-coupon-right d-flex">
                                         <div className="wd-coupon-right-top">
                                             <div className="coupon_title">
                                                 <span className="big-bold">{dataDis?.name}</span>
                                             </div>
-                                            <small>{dataDis?.description}</small>
+                                            <small
+                                                title={dataDis?.description}
+                                            >
+                                                {dataDis?.description?.length > 30
+                                                    ? `${dataDis.description.substring(0, 30)}...`
+                                                    : dataDis?.description}
+                                            </small>
                                         </div>
                                         <div className="wd-coupon-right-bottom d-flex d-flex-center">
                                             <div className="wd-coupon-detail d-flex">

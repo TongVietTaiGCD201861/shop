@@ -30,6 +30,19 @@ namespace BackEnd.Services
             }
         }
 
+        public async Task<bool> DeleteFeedback(int id)
+        {
+            var feedback = await _db.Feedbacks.FindAsync(id);
+            if (feedback == null)
+            {
+                return false;
+            }
+
+            _db.Feedbacks.Remove(feedback);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+
         public IList<Feedback> GetByShirtId(int idShirt)
         {
             try

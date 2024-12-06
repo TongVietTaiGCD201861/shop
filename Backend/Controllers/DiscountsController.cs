@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BackEnd.Controllers;
 
-[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class DiscountsController : ControllerBase
@@ -19,7 +18,7 @@ public class DiscountsController : ControllerBase
     }
 
     [HttpPost("add")]
-    public async Task<IActionResult> AddDiscount([FromBody] Discount discount)
+    public async Task<IActionResult> AddDiscount(Discount discount)
     {
         var (discount1, error) = await _discountService.AddDiscountAsync(discount);
         if (!string.IsNullOrEmpty(error))
@@ -30,7 +29,7 @@ public class DiscountsController : ControllerBase
     }
 
     [HttpPost("update")]
-    public async Task<IActionResult> UpdateDiscount([FromBody] DiscountDto discountDto)
+    public async Task<IActionResult> UpdateDiscount(DiscountDto discountDto)
     {
         var (discount, error) = await _discountService.UpdateDiscountAsync(discountDto);
         if (!string.IsNullOrEmpty(error))
@@ -52,9 +51,9 @@ public class DiscountsController : ControllerBase
     }
 
     [HttpGet("getAllDiscount")]
-    public async Task<IActionResult> GetAllDiscounts()
+    public async Task<IActionResult> GetAllDiscounts([FromQuery] SearchDiscountDto searchDiscountDto)
     {
-        var discounts = await _discountService.GetAllDiscountsAsync();
+        var discounts = await _discountService.GetAllDiscountsAsync(searchDiscountDto);
         return Ok(discounts);
     }
 

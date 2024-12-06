@@ -18,7 +18,7 @@ namespace BackEnd.Services
         {
             var cart = _db.Carts
                 .Include(c => c.Items)
-                .ThenInclude(ci => ci.Shirt)
+                    .ThenInclude(ci => ci.Shirt)
                 .SingleOrDefault(c => c.UserId == userId);
 
             if (cart == null)
@@ -26,24 +26,25 @@ namespace BackEnd.Services
                 throw new ArgumentException($"Cart for user with ID {userId} not found.");
             }
 
-            return cart;
-        }
+            var shirtIds = cart.Items.Select(ci => ci.Shirt.Id).ToList();
 
-        public IList<Cart> GetAllCarts()
-        {
-            var carts = _db.Carts
-                .Include(c => c.Items)
-                .ThenInclude(ci => ci.Shirt)
+            var images = _db.Images
+                .Where(img => shirtIds.Contains(img.IdShirt))
                 .ToList();
 
-            return carts;
+            foreach (var item in cart.Items)
+            {
+                var shirtImages = images.Where(img => img.IdShirt == item.Shirt.Id).ToList();
+            }
+
+            return cart;
         }
 
         public void AddItemToCart(int userId, int shirtId, int quantity, string color)
         {
             var cart = _db.Carts
                 .Include(c => c.Items)
-                .ThenInclude(ci => ci.Shirt) // Ensure Shirt is included
+                .ThenInclude(ci => ci.Shirt)
                 .SingleOrDefault(c => c.UserId == userId);
 
             if (cart == null)
@@ -78,7 +79,7 @@ namespace BackEnd.Services
             _db.SaveChanges();
         }
 
-        public void RemoveItemFromCart(int userId, int shirtId, int quantity)
+        public void RemoveItemFromCart(int userId, int shirtId)
         {
             var cart = _db.Carts
                 .Include(c => c.Items)
@@ -89,31 +90,33 @@ namespace BackEnd.Services
                 throw new ArgumentException($"Cart for user with ID {userId} not found.");
             }
 
-            var cartItem = cart.Items.SingleOrDefault(ci => ci.ShirtId == shirtId);
+            var cartItem = cart.Items.SingleOrDefault(ci => ci.Id == shirtId);
             if (cartItem == null)
             {
                 throw new ArgumentException($"Item with Shirt ID {shirtId} not found in cart.");
             }
 
-            cartItem.Quantity -= quantity;
-            var shirt = _db.Shirts.SingleOrDefault(s => s.Id == shirtId);
-
-            if (shirt == null)
-            {
-                throw new ArgumentException($"Shirt with ID {shirtId} not found.");
-            }
-            if (cartItem.Quantity <= 0)
-            {
-                cart.Items.Remove(cartItem);
-            }
-            else
-            {
-                cartItem.Total = cartItem.Quantity * cartItem.Shirt.Price;
-            }
+            cart.Items.Remove(cartItem);
 
             _db.SaveChanges();
         }
 
-    
+        public async Task<bool> UpdateCartItemQuantityAsync(int cartItemId, int newQuantity)
+        {
+            var cartItem = await _db.CartItems
+                                          .FirstOrDefaultAsync(ci => ci.Id == cartItemId);
+
+            if (cartItem == null)
+            {
+                return false;
+            }
+
+            cartItem.Quantity = newQuantity;
+
+            _db.CartItems.Update(cartItem);
+            await _db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

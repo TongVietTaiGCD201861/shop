@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Partner() {
     return (
         <>
-            <div className="tab-title" style={{ width: '80%', marginLeft: '10%' }}>
+            <div className="tab-title" style={{ width: '70%', marginLeft: '15%' }}>
                 <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                     <h2 className="h2-title">
                         <FontAwesomeIcon icon={faStar} />
@@ -12,7 +12,7 @@ export default function Partner() {
                     PARTNERS
                 </div>
             </div>
-            <div style={{ width: '80%', marginLeft: '10%', marginTop: '15px', marginBottom: '15px' }}>
+            <div style={{ width: '70%', marginLeft: '15%', marginTop: '15px', marginBottom: '15px' }}>
                 <div className="main-brand-box"  style={{ display: 'flex' }}>
                     <div className="brand-carousel owl-carousel owl-theme" style={{ display: 'flex' }}>
                         <div className="owl-wrapper-outer"><div className="owl-wrapper" style={{ display: 'flex' }}><div className="owl-item" style={{ width: '190px' }}><div className="item">

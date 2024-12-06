@@ -8,7 +8,7 @@ namespace BackEnd.Dtos
         [Required]
         public int ValueReduced { get; set; }
         [Required]
-        public String Name { get; set; }
+        public string Name { get; set; }
         [Required]
         public string Description { get; set; }
         [Required]

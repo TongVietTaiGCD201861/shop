@@ -1200,3 +1200,207 @@ D:\ASPNET\07_11\shop\Backend\obj\Debug\net6.0\refint\BackEnd.dll
 D:\ASPNET\07_11\shop\Backend\obj\Debug\net6.0\BackEnd.pdb
 D:\ASPNET\07_11\shop\Backend\obj\Debug\net6.0\BackEnd.genruntimeconfig.cache
 D:\ASPNET\07_11\shop\Backend\obj\Debug\net6.0\ref\BackEnd.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\appsettings.json
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BackEnd.exe
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BackEnd.deps.json
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BackEnd.runtimeconfig.json
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BackEnd.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BackEnd.pdb
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\AutoMapper.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BCrypt.Net-Next.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\CloudinaryDotNet.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Humanizer.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\MailKit.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Connections.Client.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Client.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Common.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Bcl.TimeProvider.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Features.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\MimeKit.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Formats.Asn1.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.IO.Pipelines.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Text.Json.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Threading.Channels.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\ASPNET\New folder (2)\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.csproj.AssemblyReference.cache
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.GeneratedMSBuildEditorConfig.editorconfig
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.AssemblyInfoInputs.cache
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.AssemblyInfo.cs
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.csproj.CoreCompileInputs.cache
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.MvcApplicationPartsAssemblyInfo.cs
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.MvcApplicationPartsAssemblyInfo.cache
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.sourcelink.json
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets.build.json
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets.development.json
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.BackEnd.Microsoft.AspNetCore.StaticWebAssets.props
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.build.BackEnd.props
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.BackEnd.props
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.BackEnd.props
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\staticwebassets.pack.json
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\scopedcss\bundle\BackEnd.styles.css
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.csproj.Up2Date
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.dll
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\refint\BackEnd.dll
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.pdb
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\BackEnd.genruntimeconfig.cache
+D:\ASPNET\New folder (2)\shop\Backend\obj\Debug\net6.0\ref\BackEnd.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\appsettings.json
+C:\ASP\shop\Backend\bin\Debug\net6.0\BackEnd.exe
+C:\ASP\shop\Backend\bin\Debug\net6.0\BackEnd.deps.json
+C:\ASP\shop\Backend\bin\Debug\net6.0\BackEnd.runtimeconfig.json
+C:\ASP\shop\Backend\bin\Debug\net6.0\BackEnd.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\BackEnd.pdb
+C:\ASP\shop\Backend\bin\Debug\net6.0\AutoMapper.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Humanizer.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\MailKit.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Connections.Client.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Connections.Common.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Client.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Common.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Bcl.TimeProvider.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Features.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\MimeKit.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Formats.Asn1.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.IO.Pipelines.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Text.Json.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Threading.Channels.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\ASP\shop\Backend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.csproj.AssemblyReference.cache
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.GeneratedMSBuildEditorConfig.editorconfig
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.AssemblyInfoInputs.cache
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.AssemblyInfo.cs
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.csproj.CoreCompileInputs.cache
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.MvcApplicationPartsAssemblyInfo.cs
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.MvcApplicationPartsAssemblyInfo.cache
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.sourcelink.json
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets.build.json
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets.development.json
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.BackEnd.Microsoft.AspNetCore.StaticWebAssets.props
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.build.BackEnd.props
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.BackEnd.props
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.BackEnd.props
+C:\ASP\shop\Backend\obj\Debug\net6.0\staticwebassets.pack.json
+C:\ASP\shop\Backend\obj\Debug\net6.0\scopedcss\bundle\BackEnd.styles.css
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.csproj.Up2Date
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.dll
+C:\ASP\shop\Backend\obj\Debug\net6.0\refint\BackEnd.dll
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.pdb
+C:\ASP\shop\Backend\obj\Debug\net6.0\BackEnd.genruntimeconfig.cache
+C:\ASP\shop\Backend\obj\Debug\net6.0\ref\BackEnd.dll

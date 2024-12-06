@@ -36,9 +36,6 @@ const WaitingRoom = ({ joinChatRoom }) => {
             // setIsLoading(false);
         }
     };
-    console.log(data);
-    
-
     return <Form onSubmit={e => {
         e.preventDefault();
         joinChatRoom(user, chatroom);

@@ -18,7 +18,6 @@ public class UserService : IUserService
     private readonly IMapper _mapper;
     private readonly IEmailService _emailService;
     private readonly IImageServices _imageService;
-    Claim claim = null;
 
     public UserService(ApplicationDbContext db, IJwtUtils jwtUtils, IMapper mapper, IEmailService emailService, IImageServices imageServices)
     {
@@ -44,6 +43,7 @@ public class UserService : IUserService
     }
 
 
+    // mai nói
     public async Task<AuthenticateResponse> AuthenticateGoogleLogin(GoogleLoginRequest model, string origin)
     {
         var googleUser = ValidateGoogleToken(model.TokenId);

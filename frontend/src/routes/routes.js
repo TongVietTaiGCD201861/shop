@@ -17,7 +17,10 @@ import ProductManagement from "../view/productManagement";
 import Profile from "../view/profile";
 import Paypal from "../components/paypal";
 import SearchResults from "../view/search";
-import Contact from "../view/contact";
+import OrderAdmin from "../view/admin/homeAdmin";
+import BrandAdmin from "../view/admin/brandAdmin";
+import DiscountAdmin from "../view/admin/discountAdmin";
+import ProductAdmin from "../view/admin/productAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -36,12 +39,9 @@ export const router = createBrowserRouter([
       { path: "product/cart", element: <Cart /> },
       { path: "product/purchase", element: <Purchase /> },
       { path: "product/:id", element: <ProductDetail /> },
-      { path: "admin/order-management", element: <OrderManagement /> },
-      { path: "admin/product-management", element: <ProductManagement /> },
       { path: "profile", element: <Profile /> },
       { path: "paypal", element: <Paypal /> },
       { path: "product", element: <SearchResults /> },
-      { path: "contact", element: <Contact /> },
       {
         element: <RequireAuth />,
         children: [
@@ -49,6 +49,16 @@ export const router = createBrowserRouter([
           { path: "update/:id", element: <Update /> },
         ],
       },
+    ],
+  },
+  {
+    path: "admin/",
+    element: <App />,
+    children: [
+      { path: "order", element: <OrderAdmin /> },
+      { path: "brand", element: <BrandAdmin /> },
+      { path: "discount", element: <DiscountAdmin /> },
+      { path: "product", element: <ProductAdmin /> },
     ],
   },
 ]);

@@ -82,6 +82,7 @@ public class UsersController : ControllerBase
         return Ok(new { message = "User deleted successfully" });
     }
     
+    // mai nói
     [AllowAnonymous]
     [HttpPost("forgot-password")]
     public async Task<IActionResult> ForgotPassword(ForgotPasswordRequest model)

@@ -61,11 +61,50 @@ namespace BackEnd.Services
             return await _db.Discounts.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Discount>> GetAllDiscountsAsync()
+        public async Task<IEnumerable<Discount>> GetAllDiscountsAsync(SearchDiscountDto searchDiscountDto)
         {
-            return await _db.Discounts
-                .OrderByDescending(d => d.CreatedDate)
-                .ToListAsync();
+
+            var query = _db.Discounts.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(searchDiscountDto.Name) && searchDiscountDto.Name != "null")
+            {
+                query = query.Where(d => d.Name.Contains(searchDiscountDto.Name));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchDiscountDto.Code) && searchDiscountDto.Code != "null")
+            {
+                query = query.Where(d => d.Code.Contains(searchDiscountDto.Code));
+            }
+
+            if (searchDiscountDto.Reduced != 0)
+            {
+                query = query.Where(d => d.ValueReduced == searchDiscountDto.Reduced);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchDiscountDto.FromDate))
+            {
+                if (DateTime.TryParse(searchDiscountDto.FromDate, out DateTime fromDate))
+                {
+                    query = query.Where(d => d.CreatedDate >= fromDate);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchDiscountDto.ToDate))
+            {
+                if (DateTime.TryParse(searchDiscountDto.ToDate, out DateTime toDate))
+                {
+                    query = query.Where(d => d.CreatedDate <= toDate);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchDiscountDto.ExpiryDate))
+            {
+                if (DateTime.TryParse(searchDiscountDto.ExpiryDate, out DateTime expiryDate))
+                {
+                    query = query.Where(d => d.CreatedDate >= expiryDate);
+                }
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<(bool, string)> DeleteDiscountAsync(int id)

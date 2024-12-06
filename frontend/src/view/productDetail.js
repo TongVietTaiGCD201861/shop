@@ -8,7 +8,7 @@ import FeedbackDetail from './feedback';
 import Footer from './footer';
 import Header from './header';
 import Instructions from "./instructions";
-import { Cart } from '../apiServices/cart';
+import { CartApi } from '../apiServices/cart';
 
 const ProductDetail = () => {
 
@@ -98,7 +98,7 @@ const ProductDetail = () => {
                 Color: selectedColor
             };
             setIsLoading(true);
-            await Cart.addItemToCart(token, userId, item);
+            await CartApi.addItemToCart(token, userId, item);
             setIsLoading(false);
             navigate(`/product/cart`);
         } catch (error) {

@@ -8,7 +8,7 @@ namespace BackEnd.Services.IServices
         Task<(Discount, string)> AddDiscountAsync(Discount discount);
         Task<(Discount, string)> UpdateDiscountAsync(DiscountDto discountDto);
         Task<Discount> GetDiscountByIdAsync(int id);
-        Task<IEnumerable<Discount>> GetAllDiscountsAsync();
+        Task<IEnumerable<Discount>> GetAllDiscountsAsync(SearchDiscountDto searchDiscountDto);
         Task<(bool, string)> DeleteDiscountAsync(int id);
         Task<Discount> GetDiscountByCodeAsync(string code);
     }

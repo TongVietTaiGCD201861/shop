@@ -31,7 +31,6 @@ export default function Header() {
         const currentPath = location.pathname;
         if (currentPath === '/home') setActiveTab('HOME');
         else if (currentPath === '/product') setActiveTab('PRODUCT');
-        else if (currentPath === '/contact') setActiveTab('CONTACT');
         else if (/^\/product\/\d+$/.test(currentPath)) {
             setActiveTab('PRODUCT');
         }
@@ -60,21 +59,12 @@ export default function Header() {
         setShowPopup(!showPopup);
     };
 
-    const handleOrderPlaced = () => {
-        setShowPopupOrder(false);
-        setShowOrderConfirmation(true);
-    };
-
     const handleOpenProfile = () => {
         navigate(`/profile`);
     };
 
-    const handleManagement = () => {
-        navigate(`/admin/order-management`);
-    };
-
-    const handleProductManagement = () => {
-        navigate(`/admin/product-management`);
+    const handleChangeAdmin = () => {
+        navigate(`/admin/product`);
     };
 
     const handleLogout = () => {
@@ -108,8 +98,6 @@ export default function Header() {
     const handleSearch = () => {
         if (searchTerm) {
             const currentPath = location.pathname;
-            console.log(currentPath);
-
             if (currentPath !== '/product') {
                 navigate('/product', { state: { searchTerm } });
             } else {
@@ -147,14 +135,10 @@ export default function Header() {
                                 <div className="popup1" ref={popupRef}>
                                     <div className="popup-content1">
                                         <button onClick={handleLogout}>Log out</button>
-                                        <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
-                                        <button onClick={handleOrderPlaced}>Order placed</button>
                                         {role === 1 && (
-                                            <div>
-                                                <button onClick={handleManagement}>Commodity management</button>
-                                                <button onClick={handleProductManagement}>Product management</button>
-                                            </div>
+                                            <button onClick={handleChangeAdmin}>Admin page</button>
                                         )}
+                                        <button onClick={() => {/* Xử lý thông tin người dùng */ }}>User information</button>
                                     </div>
                                 </div>
                             )}
@@ -211,9 +195,9 @@ export default function Header() {
                         <div style={getTabStyle('PRODUCT')} onClick={() => handleTabClick('PRODUCT', '/product')}>
                             PRODUCT
                         </div>
-                        <div style={getTabStyle('CONTACT')} onClick={() => handleTabClick('CONTACT', '/contact')}>
+                        {/* <div style={getTabStyle('CONTACT')} onClick={() => handleTabClick('CONTACT', '/contact')}>
                             CONTACT
-                        </div>
+                        </div> */}
                         <div style={{ width: '50%' }}>
                             <div className="cart1">
                                 <input

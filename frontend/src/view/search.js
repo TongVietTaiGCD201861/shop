@@ -11,14 +11,17 @@ import { Shirt } from '../apiServices';
 
 export default function SearchResults() {
     const [dataBrand, setDataBrand] = useState(null);
+    const [search, setSearch] = useState(null);
     const location = useLocation();
-    const { searchTerm } = location.state || {};
+    // const { searchTerm } = location.state || {};
     const [selectedPrice, setSelectedPrice] = useState(null);
     const [selectedType, setSelectedType] = useState(null);
     const { token } = useSelector((state) => state.user);
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { searchTerm: initialSearchTerm } = location.state || {};
+    const [searchTerm, setSearchTerm] = useState(initialSearchTerm || null);
 
     useEffect(() => {
         fetchDataBrand();
@@ -27,7 +30,7 @@ export default function SearchResults() {
 
     useEffect(() => {
         fetchData();
-    }, [selectedPrice, selectedType]);
+    }, [searchTerm, selectedPrice, selectedType]);
 
     const handleRadioChange = (event) => {
         const { value } = event.target;
@@ -57,8 +60,6 @@ export default function SearchResults() {
                 MinPrice: 0,
                 MaxPrice: selectedPrice || 999999999,
             };
-            console.log(params);
-            
             const response = await Shirt.get(token, params);
             setData(response.data);
         } catch (error) {
@@ -73,6 +74,11 @@ export default function SearchResults() {
 
     const handleProductClick = (productId) => {
         navigate(`/product/${productId}`);
+    };
+
+    const handleSearch = () => {
+        setSearchTerm(search || null);
+        fetchData();
     };
 
     if (isLoading) {
@@ -92,10 +98,19 @@ export default function SearchResults() {
                 <span className="breadcrumb-divider">/</span>
                 <span className="breadcrumb-item">Products</span>
             </div>
-
-            <div style={{ width: '70%', marginLeft: '15%', marginTop: '2%', marginBottom: '3%', display: 'flex' }}>
+            <div style={{ width: '70%', marginLeft: '15%', fontSize: '25px', color: 'rgb(131, 68, 83)' }}>Products</div>
+            <div style={{ width: '70%', marginLeft: '14%', marginTop: '1%', marginBottom: '3%', display: 'flex' }}>
                 {/* Sidebar */}
                 <div style={{ width: '25%' }}>
+                    <div style={{ width: '100%', display: 'flex' }}>
+                        <input name="search"
+                            style={{ marginLeft: '5%', }}
+                            placeholder='Search'
+                            className='input-search'
+                            onChange={(e) => setSearch(e.target.value)}
+                            value={search} />
+                        <button className="btn-search" onClick={handleSearch}>Search</button>
+                    </div>
                     <div style={{
                         width: '90%',
                         border: '1px solid #ccc',
@@ -244,9 +259,7 @@ export default function SearchResults() {
                     </div>
                 </div>
             </div>
-            <div style={{ width: '90%', marginLeft: '5%' }}>
-                <Partner />
-            </div>
+            <Partner />
             <Footer />
         </>
     );

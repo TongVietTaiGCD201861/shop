@@ -48,7 +48,7 @@ const ProductHome = ({ dataBrands }) => {
     };
 
     return (
-        <div className="product-home" style={{ padding: '15px' }}>
+        <div className="product-home" style={{ paddingTop: '15px', paddingBottom: '15px' }}>
             {dataBrands?.length > 0 ? (
                 <div>
                     <div className="tab-title">
@@ -101,7 +101,7 @@ const ProductHome = ({ dataBrands }) => {
                 </div>
             ) : (
                 <div style={{ display: 'flex', justifyContent: 'center', padding: '35px' }}>
-                    There are currently no discounts available.
+                    There are currently no brand available.
                 </div>
             )}{isPopupVisible && (
                 <PopupCart

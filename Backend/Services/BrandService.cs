@@ -1,8 +1,9 @@
 ﻿using BackEnd.Data;
+using BackEnd.Dtos;
 using BackEnd.Models;
 using BackEnd.Services.IServices;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace BackEnd.Services
 {
@@ -15,11 +16,51 @@ namespace BackEnd.Services
             _db = db;
         }
 
-        public async Task<IEnumerable<Brand>> GetAllBrandsAsync()
+        public async Task<Brand> AddBrandAsync(Brand brand)
+        {
+            brand.CreatedDate = DateTime.UtcNow;
+            brand.UpdatedDate = DateTime.UtcNow;
+
+            _db.Brands.Add(brand);
+            await _db.SaveChangesAsync();
+
+            return brand;
+        }
+
+        public async Task<Brand> UpdateBrandAsync(Brand brand, int id)
+        {
+            var existingBrand = await _db.Brands.FindAsync(id);
+            if (existingBrand == null)
+            {
+                return null;
+            }
+
+            existingBrand.Name = brand.Name;
+            existingBrand.Description = brand.Description;
+            existingBrand.UpdatedDate = DateTime.UtcNow;
+
+            _db.Brands.Update(existingBrand);
+            await _db.SaveChangesAsync();
+            return brand;
+        }
+
+        public async Task<IEnumerable<Brand>> GetAllBrandsAsync(BranDto branDto)
         {
             try
             {
-                return await _db.Brands.ToListAsync();
+                var query = _db.Brands.AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(branDto.Name) && branDto.Name != "null")
+                {
+                    query = query.Where(b => b.Name.Contains(branDto.Name));
+                }
+
+                if(branDto.OperatingStatus != 0)
+                {
+                    query = query.Where(b => b.OperatingStatus == branDto.OperatingStatus);
+                }
+
+                return await query.ToListAsync();
             }
             catch (Exception ex)
             {
@@ -48,6 +89,34 @@ namespace BackEnd.Services
             }).ToList();
 
             return groupedResult;
+        }
+
+        public async Task<bool> DeleteBrandAsync(int id)
+        {
+            var brand = await _db.Brands.FindAsync(id);
+            if (brand == null)
+            {
+                return false; 
+            }
+
+            _db.Brands.Remove(brand);
+            await _db.SaveChangesAsync();
+            return true; 
+        }
+
+        public async Task<Brand> updateStatus(int id, int operatingStatus)
+        {
+            var existingBrand = await _db.Brands.FindAsync(id);
+            if (existingBrand == null)
+            {
+                return null;
+            }
+
+            existingBrand.OperatingStatus = operatingStatus;
+
+            _db.Brands.Update(existingBrand);
+            await _db.SaveChangesAsync();
+            return existingBrand;
         }
     }
 }

@@ -27,29 +27,20 @@ export default function Home() {
 
     useEffect(() => {
         setIsLoading(true);
-        fetchData(searchTerm);
         fetchDataOrder();
         fetchDataBrand();
         fetchDataDiscount();
         setTimeout(() => setIsLoading(false), 300);
     }, []);
 
-    const fetchData = async (searchItem) => {
-        setIsLoading(true);
-        try {
-            const response = await Shirt.get(token, searchItem);
-            setData(response.data);
-            setIsLoading(false);
-        } catch (error) {
-            setError(error);
-            setIsLoading(false);
-        }
-    };
-
     const fetchDataBrand = async () => {
         setIsLoading(true);
         try {
-            const response = await Brand.get(token);
+            const params = {
+                Name:  null,
+                OperatingStatus: 1,
+            };
+            const response = await Brand.get(token, params);
             setDataBrand(response.data);
             setIsLoading(false);
         } catch (error) {
@@ -73,7 +64,15 @@ export default function Home() {
     const fetchDataDiscount = async () => {
         setIsLoading(true);
         try {
-            const responseDiscount = await Discount.get(token);
+            const params = {
+                Name: null,
+                Code: null,
+                Reduced: 0,
+                FromDate: null,
+                ToDate: null,
+                ExpiryDate: null,
+            };
+            const responseDiscount = await Discount.get(token, params);
             setDataDiscounts(responseDiscount.data);
             setIsLoading(false);
         } catch (error) {

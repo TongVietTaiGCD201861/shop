@@ -1,38 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\ASPNET\\07_11\\shop\\Backend\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|c:\\users\\admin\\downloads\\shop\\backend\\controllers\\discountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:controllers\\discountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|c:\\users\\admin\\downloads\\shop\\backend\\controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|c:\\users\\admin\\downloads\\shop\\backend\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\services\\iservices\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:services\\iservices\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|c:\\users\\admin\\downloads\\shop\\backend\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\services\\shirtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:services\\shirtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\controllers\\shirtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:controllers\\shirtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|d:\\aspnet\\07_11\\shop\\backend\\dtos\\additemtocartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:dtos\\additemtocartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|c:\\users\\admin\\downloads\\shop\\backend\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72C36A89-919C-4924-9A86-6CD15F208E49}|BackEnd.csproj|solutionrelative:services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,8 +29,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "DockedWidth": 216,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,100 +50,65 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAwwDoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T16:57:51.241Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ShirtService.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Services\\ShirtService.cs",
-              "RelativeDocumentMoniker": "Services\\ShirtService.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Services\\ShirtService.cs",
-              "RelativeToolTip": "Services\\ShirtService.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAvwFUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T15:40:44.974Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ShirtsController.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Controllers\\ShirtsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ShirtsController.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Controllers\\ShirtsController.cs",
-              "RelativeToolTip": "Controllers\\ShirtsController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACIAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T15:38:57.741Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CartService.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Services\\CartService.cs",
-              "RelativeDocumentMoniker": "Services\\CartService.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Services\\CartService.cs",
-              "RelativeToolTip": "Services\\CartService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAhwBwAAAAYAAAAAAAAAA==",
+              "Title": "DiscountsController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Controllers\\DiscountsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DiscountsController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Controllers\\DiscountsController.cs",
+              "RelativeToolTip": "Controllers\\DiscountsController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAwwDQAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T06:45:50.485Z",
+              "WhenOpened": "2024-11-29T14:44:54.509Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AddItemToCartRequest.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Dtos\\AddItemToCartRequest.cs",
-              "RelativeDocumentMoniker": "Dtos\\AddItemToCartRequest.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Dtos\\AddItemToCartRequest.cs",
-              "RelativeToolTip": "Dtos\\AddItemToCartRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAbAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "BrandsController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Controllers\\BrandsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BrandsController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Controllers\\BrandsController.cs",
+              "RelativeToolTip": "Controllers\\BrandsController.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAuwFsAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T06:32:50.421Z"
+              "WhenOpened": "2024-11-28T09:30:48.746Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CartsController.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Controllers\\CartsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CartsController.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Controllers\\CartsController.cs",
-              "RelativeToolTip": "Controllers\\CartsController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowDkAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Models\\Admin.cs",
+              "RelativeDocumentMoniker": "Models\\Admin.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Models\\Admin.cs",
+              "RelativeToolTip": "Models\\Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T06:32:07.989Z"
+              "WhenOpened": "2024-11-28T09:30:44.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CartService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Services\\CartService.cs",
+              "RelativeDocumentMoniker": "Services\\CartService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Services\\CartService.cs",
+              "RelativeToolTip": "Services\\CartService.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAwwF8AAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T16:39:01.26Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ICartService.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Services\\IServices\\ICartService.cs",
-              "RelativeDocumentMoniker": "Services\\IServices\\ICartService.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Services\\IServices\\ICartService.cs",
-              "RelativeToolTip": "Services\\IServices\\ICartService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAANAAAAAAAAAA==",
+              "Title": "CartsController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Controllers\\CartsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CartsController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\shop\\Backend\\Controllers\\CartsController.cs",
+              "RelativeToolTip": "Controllers\\CartsController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwDkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T06:48:28.374Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CartItem.cs",
-              "DocumentMoniker": "D:\\ASPNET\\07_11\\shop\\Backend\\Models\\CartItem.cs",
-              "RelativeDocumentMoniker": "Models\\CartItem.cs",
-              "ToolTip": "D:\\ASPNET\\07_11\\shop\\Backend\\Models\\CartItem.cs",
-              "RelativeToolTip": "Models\\CartItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T06:47:06.781Z"
+              "WhenOpened": "2024-11-22T16:08:57.042Z",
+              "EditorCaption": ""
             }
           ]
         }

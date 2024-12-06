@@ -49,9 +49,6 @@ export default function Paypal() {
                 }),
             });
             const orderData = await response.json();
-            console.log(orderData);
-
-
             if (!orderData.id) {
                 const errorDetail = orderData.details[0];
                 const errorMessage = errorDetail

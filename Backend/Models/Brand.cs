@@ -12,6 +12,7 @@ namespace BackEnd.Models
 
         [Required]
         public string Description { get; set; }
+        public int OperatingStatus { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
